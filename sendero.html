@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="styles/global.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <script src="js/main/color_scheme.js" defer></script>
+  <title>Sendero</title>
+</head>
+
+<body class="background">
+  <div class="noise"></div>
+
+  <a href="index.html" class="back" aria-colspan="home_n">
+    <img src="./assets/img/homa.png" alt="back" width="80px" height="80px" style="filter: drop-shadow(0 0 10px white);">
+  </a>
+
+  <div class="flex container">
+    <img src="./assets/img/mapa_sendero.png" alt="" id="mapa_sendero">
+    
+    <style>
+      #mapa_sendero {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        filter: drop-shadow(0 0 10px white);
+      }
+
+      #leyenda {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      dialog {
+        width: 90%;
+        height: 90%;
+      }
+
+      #modal1 {
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+
+      #modal2 {
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+
+      #modal3 {
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+
+      #cerrar_modal1 {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: transparent;
+        color: white;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      #cerrar_modal2 {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: transparent;
+        color: white;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      #cerrar_modal3 {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: transparent;
+        color: white;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      #btn_modal1 {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 30px;
+        cursor: pointer;
+        margin: 10px 0;
+        position:absolute;
+        bottom: 20%;
+        right: 30%;
+      }
+
+      #btn_modal2 {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 30px;
+        cursor: pointer;
+        margin: 10px 0;
+        position:absolute;
+        bottom: 40%;
+        right: 50%;
+      }
+
+      #btn_modal3 {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 30px;
+        cursor: pointer;
+        margin: 10px 0;
+        position:absolute;
+        bottom: 20%;
+        left: 30%;
+      }
+
+
+
+    </style>
+
+    <div class="flex column">
+      <button id="btn_modal1">Inicio</button>
+      <button id="btn_modal2">Nido</button>
+      <button id="btn_modal3">Final</button>
+    </div>
+
+    <dialog id="modal1">
+      <img src="./assets/img/20240820_102450.jpg" alt="leyenda" id="leyenda">
+      <button id="cerrar_modal1">Cerrar</button>
+    </dialog>
+
+    <dialog id="modal2">
+      <img src="./assets/img/20240820_104103.jpg" alt="leyenda" id="leyenda">
+      <button id="cerrar_modal2">Cerrar</button>
+    </dialog>
+
+    <dialog id="modal3">
+      <!-- video -->
+      <video controls id="leyenda">
+        <source src="./assets/img/20240820_110012.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      <button id="cerrar_modal3">Cerrar</button>
+    </dialog>
+
+    <script>
+      const modal1 = document.getElementById('modal1');
+      const modal2 = document.getElementById('modal2');
+      const modal3 = document.getElementById('modal3');
+      const btn_modal1 = document.getElementById('btn_modal1');
+      const btn_modal2 = document.getElementById('btn_modal2');
+      const btn_modal3 = document.getElementById('btn_modal3');
+      const cerrar_modal1 = document.getElementById('cerrar_modal1');
+      const cerrar_modal2 = document.getElementById('cerrar_modal2');
+      const cerrar_modal3 = document.getElementById('cerrar_modal3');
+
+      btn_modal1.addEventListener('click', () => {
+        modal1.showModal();
+      });
+
+      btn_modal2.addEventListener('click', () => {
+        modal2.showModal();
+      });
+
+      btn_modal3.addEventListener('click', () => {
+        modal3.showModal();
+      });
+
+      cerrar_modal1.addEventListener('click', () => {
+        modal1.close();
+      });
+
+      cerrar_modal2.addEventListener('click', () => {
+        modal2.close();
+      });
+
+      cerrar_modal3.addEventListener('click', () => {
+        modal3.close();
+      });
+    </script>
+
+  </div>
+
+
+</body>
+
+</html>
