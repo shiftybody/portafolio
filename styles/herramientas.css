@@ -29,8 +29,10 @@ body {
 }
 
 .bottom_space{
-  margin-bottom: 10rem;
+  padding-bottom: 10rem;
 }
+
+
 
 .floating_header {
   position: fixed; /* Hace que el header esté siempre visible en la parte superior */
@@ -97,10 +99,30 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999; /* Asegura que esté por encima de otros elementos */
+  z-index: 999; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.396);
 }
 
+hr{
+  /* grosor */
+  border: 1px solid #333;
+  /* color */
+  border-color: #333;
+  margin-bottom: 2rem;
+  
+}
+
+#strengths3{
+  margin: 0;
+}
+
+#opportunities3{
+  margin: 0;
+}
+
+#weaknesses3{
+  margin: 0;
+}
 
 h1 {
   margin: 0;
@@ -230,3 +252,7 @@ button.clear {
   background-color: #f44336;
   color: white;
 }
+
+
+/* FODA */
+

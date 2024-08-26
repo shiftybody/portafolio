@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="styles/global.css">
+  <link rel="stylesheet" href="styles/herramientas.css">
+  <script src="https://kit.fontawesome.com/be7b66abf8.js" crossorigin="anonymous"></script>
+  <script src="js/main/color_scheme.js" defer></script>
+  <title>FODA</title>
+  <style>
+    .foda-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 1rem;
+      height: 100vh;
+      padding: 1rem;
+      margin-top: 5.5rem;
+    }
+
+    .foda-item {
+      border: 2px solid #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      text-align: center;
+      flex-direction: column;
+      padding: 1rem;
+    }
+
+    .fortalezas {
+      background-color: #cce5ff;
+    }
+
+    .oportunidades {
+      background-color: #d4edda;
+    }
+
+    .debilidades {
+      background-color: #f8d7da;
+    }
+
+    .amenazas {
+      background-color: #fff3cd;
+    }
+
+    .header {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="noise"></div>
+  <!-- div que oculta el contenido del main para el header fl -->
+  <div class="top_hidder"></div>
+
+  <header class="floating_header header">
+    <a href="./index.html" class="left-link">
+      <i class="fa-solid fa-house fa-xl"></i>
+    </a>
+    <div class="center-buttons">
+      <a href="./herramientas.html" class="link_formulario">
+        <button>FORMULARIO</button>
+      </a>
+      <button class="link_catwda" disabled>CATWDA</button>
+      <button class="link_ishikawa" disabled>ISHIKAWA</button>
+      <button class="link_pareto" disabled>PARETO</button>
+      <button class="link_sombreros" disabled>SOMBREROS</button>
+    </div>
+    <div class="right-link">
+      <input type="checkbox" id="checkbox_teme">
+      <label id="theme-switch" class="theme-switch" for="checkbox_teme"></label>
+    </div>
+  </header>
+  <div class="foda-container">
+    <div class="foda-item fortalezas" id="fortalezas">
+      <div class="header">Fortalezas</div>
+      <div id="content-fortalezas"></div>
+    </div>
+    <div class="foda-item oportunidades" id="oportunidades">
+      <div class="header">Oportunidades</div>
+      <div id="content-oportunidades"></div>
+    </div>
+    <div class="foda-item debilidades" id="debilidades">
+      <div class="header">Debilidades</div>
+      <div id="content-debilidades"></div>
+    </div>
+    <div class="foda-item amenazas" id="amenazas">
+      <div class="header">Amenazas</div>
+      <div id="content-amenazas"></div>
+    </div>
+  </div>
+  <script>
+    // Extrae el objeto analysisData desde el localStorage
+    const analysisData = JSON.parse(localStorage.getItem('analysisData')) || {};
+
+    // Combina los valores de las claves correspondientes con saltos de línea
+    const fortalezas = `${analysisData.strengths1 || ''}\n${analysisData.strengths2 || ''}\n${analysisData.strengths3 || ''}`;
+    const oportunidades = `${analysisData.opportunities1 || ''}\n${analysisData.opportunities2 || ''}\n${analysisData.opportunities3 || ''}`;
+    const debilidades = `${analysisData.weaknesses1 || ''}\n${analysisData.weaknesses2 || ''}\n${analysisData.weaknesses3 || ''}`;
+    const amenazas = `${analysisData.threats1 || ''}\n${analysisData.threats2 || ''}\n${analysisData.threats3 || ''}`;
+
+    // Asigna el contenido combinado a cada área del grid
+    document.getElementById('content-fortalezas').textContent = fortalezas.trim() || 'No hay datos';
+    document.getElementById('content-oportunidades').textContent = oportunidades.trim() || 'No hay datos';
+    document.getElementById('content-debilidades').textContent = debilidades.trim() || 'No hay datos';
+    document.getElementById('content-amenazas').textContent = amenazas.trim() || 'No hay datos';
+
+  </script>
+</body>
+
+</html>

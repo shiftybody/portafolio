@@ -33,15 +33,18 @@ document.addEventListener('DOMContentLoaded', () => {
           }
       });
       return formData;
+      
   }
 
   // Enable or disable section save buttons
   function checkSectionFilled(detailsSection) {
       const textareas = detailsSection.querySelectorAll('textarea');
       const saveButton = detailsSection.querySelector('.details-save');
+      
       const allFilled = Array.from(textareas).every(textarea => textarea.value.trim() !== '');
 
       saveButton.disabled = !allFilled;
+
   }
 
   // Enable or disable global save and update buttons
@@ -95,3 +98,73 @@ document.addEventListener('DOMContentLoaded', () => {
       details.open = true;
   });
 });
+
+
+
+// si existe un valor en la clave strengths1 en localStorage con nombre de objeto analysisData, eliminar el atributo disabled del elemento con clase link_foda
+
+document.addEventListener('DOMContentLoaded', () => {
+    const savedData = JSON.parse(localStorage.getItem('analysisData'));
+
+    if (savedData && savedData.strengths1) {
+        document.querySelector('.link_foda').removeAttribute('disabled');
+    } else {
+        document.querySelector('.link_foda').setAttribute('disabled', 'disabled');
+    }
+});
+
+// realizar lo mismo para link_catwda
+
+document.addEventListener('DOMContentLoaded', () => {
+    const savedData = JSON.parse(localStorage.getItem('analysisData'));
+
+    if (savedData && savedData.strengths1) {
+        document.querySelector('.link_catwda').removeAttribute('disabled');
+    } else {
+        document.querySelector('.link_catwda').setAttribute('disabled', 'disabled');
+    }
+});
+
+// realizar lo mismo para link_ishikawa
+
+document.addEventListener('DOMContentLoaded', () => {
+    const savedData = JSON.parse(localStorage.getItem('analysisData'));
+
+    if (savedData && savedData.strengths1) {
+        document.querySelector('.link_ishikawa').removeAttribute('disabled');
+    } else {
+        document.querySelector('.link_ishikawa').setAttribute('disabled', 'disabled');
+    }
+}
+);
+
+// realizar lo mismo para link_pareto
+
+document.addEventListener('DOMContentLoaded', () => {
+    const savedData = JSON.parse(localStorage.getItem('analysisData'));
+
+    if (savedData && savedData.strengths1) {
+        document.querySelector('.link_pareto').removeAttribute('disabled');
+    } else {
+        document.querySelector('.link_pareto').setAttribute('disabled', 'disabled');
+    }
+}
+);
+
+// realizar lo mismo para link_sombreros
+
+document.addEventListener('DOMContentLoaded', () => {
+    const savedData = JSON.parse(localStorage.getItem('analysisData'));
+
+    if (savedData && savedData.strengths1) {
+        document.querySelector('.link_sombreros').removeAttribute('disabled');
+    } else {
+        document.querySelector('.link_sombreros').setAttribute('disabled', 'disabled');
+    }
+}
+
+);
+
+
+
+

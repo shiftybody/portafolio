@@ -22,7 +22,7 @@
       <i class="fa-solid fa-house fa-xl"></i>
     </a>
     <div class="center-buttons">
-      <button class="link_foda" disabled>FODA</button>
+      <a href="./foda.html" class="link_foda" disabled><button>FODA</button></a>
       <button class="link_catwda" disabled>CATWDA</button>
       <button class="link_ishikawa" disabled>ISHIKAWA</button>
       <button class="link_pareto" disabled>PARETO</button>
@@ -37,44 +37,69 @@
     <form id="analysis-form">
       <!-- Sección FODA -->
       <details>
-          <summary></summary>
-          <label for="strengths">Fortalezas:</label>
-          <textarea id="strengths"></textarea>
+          <summary>Conoce tu organización</summary>
+          <label for="strengths1">¿Qué cosas son las que tu empresa hace muy bien, mejor que muchos otros?</label>
+          <textarea id="strengths1"></textarea>
+          <label for="strengths2">Tu empresa es fuerte en el mercado o trabaja para hacerlo en el segmento al que apunta ¿Por qué?</label>
+          <textarea id="strengths2"></textarea>
+          <label for="strengths3">¿De qué te sientes más orgulloso? ¿De qué se sienten más orgullosos tus empleados y/o compañeros de trabajo?</label>
+          <textarea id="strengths3"></textarea>
 
-          <label for="opportunities">Oportunidades:</label>
-          <textarea id="opportunities"></textarea>
+          <hr>
 
-          <label for="weaknesses">Debilidades:</label>
-          <textarea id="weaknesses"></textarea>
+          <label for="opportunities1">¿Qué demandas insatisfechas en el mercado que usted, y solo usted, puede satisfacer?</label>
+          <textarea id="opportunities1"></textarea>
+          <label for="opportunities2">¿Qué tecnologías emergentes utilizarias para amplificar tus fortalezas</label>
+          <textarea id="opportunities2"></textarea>
+          <label for="opportunities3">¿Cómo podrías comunicar de manera más efectiva las formas en que eres superior?</label>
+          <textarea id="opportunities3"></textarea>
 
-          <label for="threats">Amenazas:</label>
-          <textarea id="threats"></textarea>
+
+          <hr>
+
+          <label for="weaknesses1">¿Cuáles son algunas de las fuerzas internas que están afectando sus resultados?</label>
+          <textarea id="weaknesses1"></textarea>
+          <label for="weaknesses2">¿Los defectos vienen de la mano de insuficientes recursos o de una mala asignación de los mismos?
+          </label>
+          <textarea id="weaknesses2"></textarea>
+          <label for="weaknesses3">¿Qué cosas son las que tu empresa no hace bien, incluso peor que otros?</label>
+          <textarea id="weaknesses3"></textarea>
+
+          <hr>
+
+          <label for="threats1">¿Qué hay en el negocio de tu competidor que te mantiene despierto por la noche?</label>
+          <textarea id="threats1"></textarea>
+          <label for="threats2">¿Qué eventos o incidentes recientes han ocurrido en la industria que podrían representar una amenaza potencial para la organización?</label>
+          <textarea id="threats2"></textarea>
+          <label for="threats3">¿Qué vulnerabilidades internas existen dentro de la organización que podrían ser explotadas por amenazas externas?</label>
+          <textarea id="threats3"></textarea>
 
           <button type="button" class="details-save" disabled>Guardar FODA</button>
       </details>
 
       <!-- Sección CATWOE -->
       <details>
-          <summary>CATWDA</summary>
-          <label for="customer">Cliente:</label>
+          <summary>Identifica elementos escenciales</summary>
+          <label for="customer">¿Quiénes son los beneficiarios o víctimas del sistema o proceso?</label>
           <textarea id="customer"></textarea>
 
-          <label for="actors">Actores:</label>
+          <label for="actors">¿Quiénes son los actores que participan en la implementación del proceso o sistema?</label>
           <textarea id="actors"></textarea>
 
-          <label for="transformation">Transformación:</label>
+          <label for="transformation">¿Qué transformación ocurre en el proceso o sistema?</label>
           <textarea id="transformation"></textarea>
 
-          <label for="worldview">Weltanschauung (Mundo):</label>
+          <label for="worldview">¿Por qué es importante este sistema o proceso en un contexto más amplio?</label>
           <textarea id="worldview"></textarea>
 
-          <label for="owner">Dueño:</label>
+          <label for="owner">¿Quiénes tienen el poder de detener o modificar el sistema?
+          </label>
           <textarea id="owner"></textarea>
 
-          <label for="environment">Restricciones Ambientales:</label>
-          <textarea id="environment"></textarea>
+          <label for="aseguramiento">¿Qué mecanismos aseguran que el sistema funcione correctamente?</label>
+          <textarea id="aseguramiento"></textarea>
 
-          <button type="button" class="details-save" disabled>Guardar CATWOE</button>
+          <button type="button" class="details-save" disabled>Guardar CATWDA</button>
       </details>
 
       <!-- Sección Ishikawa -->
@@ -126,7 +151,9 @@
       <button type="button" class="update" disabled>Actualizar Todo</button>
       <button type="button" class="clear">Vaciar Todo</button>
   </form>
-  <div class="bottom_space"></div>
+
+  <div class="bottom_space">
+  </div>
 
   <div class="bottom_hidder"></div>
 
