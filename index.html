@@ -34,25 +34,41 @@
         <input type="checkbox" id="checkbox_teme">
         <label id="theme-switch" class="theme-switch" for="checkbox_teme"></label>
       </div>
-      <div class="grid-item herramientas_space">
-        <h3 class="h_first">5</h3>
-        <div class="h_second">
-          <h4>Herramientas</h4>
-          <p>para la toma de desiciones</p>
+      <a href="./herramientas.html" class="link_herramientas">
+        <div class="grid-item herramientas_space">
+          <h3 class="h_first">5</h3>
+          <div class="h_second">
+            <h4>Herramientas</h4>
+            <p>para la toma de desiciones</p>
+          </div>
         </div>
+      </a>
+      <div class="grid-item decalogo_desarrollo_space">
+        <h4>Decálogo del Desarrollo</h4>
       </div>
-      <div class="grid-item" style="font-size: 1.9rem; display: flex; text-align: center;">Decálogo del Desarrollo</div>
+
       <div class="grid-item medium-item kenji_kasuga_space">
         <div class="about-me-card">
-          <img src="assets/img/Kenji.jpg" alt="logo of shiftybody" class="kenji">
+          <img src="assets/img/Kenji.jpg" alt="logo of shiftybody" class="kenji" id="myImage">
           <h4 class="kenji_tittle">
-            Decálogo de  <br> Kenji & Kasuga
+            Decálogo de Kenji & Kasuga
           </h4>
         </div>
       </div>
       <!-- Add more items as needed -->
     </div>
   </div>
+
+  <script>
+    const images = ["./assets/img/kasuga.png", "./assets/img/kenji.jpg"]; // URLs de las imágenes
+    let currentIndex = 0;
+    
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % images.length; // Actualiza el índice de la imagen
+      document.getElementById("myImage").src = images[currentIndex]; // Cambia la URL de la imagen
+    }, 3000); // Cambia cada 4 segundos
+  </script>
+
 </body>
 
 </html>

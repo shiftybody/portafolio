@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="styles/global.css">
+  <link rel="stylesheet" href="styles/herramientas.css">
+  <script src="https://kit.fontawesome.com/be7b66abf8.js" crossorigin="anonymous"></script>
+  <script src="js/main/color_scheme.js" defer></script>
+  <title>Herramientas para la toma de desiciones</title>
+</head>
+
+<body>
+  <div class="noise"></div>
+  <!-- div que oculta el contenido del main para el header fl -->
+  <div class="top_hidder"></div>
+
+  <header class="floating_header header">
+    <a href="./index.html" class="left-link">
+      <i class="fa-solid fa-house fa-xl"></i>
+    </a>
+    <div class="center-buttons">
+      <button class="link_foda" disabled>FODA</button>
+      <button class="link_catwda" disabled>CATWDA</button>
+      <button class="link_ishikawa" disabled>ISHIKAWA</button>
+      <button class="link_pareto" disabled>PARETO</button>
+      <button class="link_sombreros" disabled>SOMBREROS</button>
+    </div>
+    <div class="right-link">
+      <input type="checkbox" id="checkbox_teme">
+      <label id="theme-switch" class="theme-switch" for="checkbox_teme"></label>
+    </div>
+  </header>
+  <main>
+    <form id="analysis-form">
+      <!-- Sección FODA -->
+      <details>
+          <summary></summary>
+          <label for="strengths">Fortalezas:</label>
+          <textarea id="strengths"></textarea>
+
+          <label for="opportunities">Oportunidades:</label>
+          <textarea id="opportunities"></textarea>
+
+          <label for="weaknesses">Debilidades:</label>
+          <textarea id="weaknesses"></textarea>
+
+          <label for="threats">Amenazas:</label>
+          <textarea id="threats"></textarea>
+
+          <button type="button" class="details-save" disabled>Guardar FODA</button>
+      </details>
+
+      <!-- Sección CATWOE -->
+      <details>
+          <summary>CATWDA</summary>
+          <label for="customer">Cliente:</label>
+          <textarea id="customer"></textarea>
+
+          <label for="actors">Actores:</label>
+          <textarea id="actors"></textarea>
+
+          <label for="transformation">Transformación:</label>
+          <textarea id="transformation"></textarea>
+
+          <label for="worldview">Weltanschauung (Mundo):</label>
+          <textarea id="worldview"></textarea>
+
+          <label for="owner">Dueño:</label>
+          <textarea id="owner"></textarea>
+
+          <label for="environment">Restricciones Ambientales:</label>
+          <textarea id="environment"></textarea>
+
+          <button type="button" class="details-save" disabled>Guardar CATWOE</button>
+      </details>
+
+      <!-- Sección Ishikawa -->
+      <details>
+          <summary>Diagrama de Ishikawa</summary>
+          <label for="central-problem">Problema Central:</label>
+          <textarea id="central-problem"></textarea>
+
+          <label for="causes">Causas Principales:</label>
+          <textarea id="causes"></textarea>
+
+          <button type="button" class="details-save" disabled>Guardar Ishikawa</button>
+      </details>
+
+      <!-- Sección Diagrama de Pareto -->
+      <details>
+          <summary>Diagrama de Pareto</summary>
+          <label for="pareto-problems">Identificación de Problemas:</label>
+          <textarea id="pareto-problems"></textarea>
+
+          <button type="button" class="details-save" disabled>Guardar Pareto</button>
+      </details>
+
+      <!-- Sección Seis Sombreros -->
+      <details>
+          <summary>Seis Sombreros para Pensar</summary>
+          <label for="white-hat">Sombrero Blanco (Objetivo):</label>
+          <textarea id="white-hat"></textarea>
+
+          <label for="red-hat">Sombrero Rojo (Emocional):</label>
+          <textarea id="red-hat"></textarea>
+
+          <label for="black-hat">Sombrero Negro (Crítico):</label>
+          <textarea id="black-hat"></textarea>
+
+          <label for="yellow-hat">Sombrero Amarillo (Optimista):</label>
+          <textarea id="yellow-hat"></textarea>
+
+          <label for="green-hat">Sombrero Verde (Creativo):</label>
+          <textarea id="green-hat"></textarea>
+
+          <label for="blue-hat">Sombrero Azul (Organización):</label>
+          <textarea id="blue-hat"></textarea>
+
+          <button type="button" class="details-save" disabled>Guardar Sombreros</button>
+      </details>
+
+      <button type="button" class="save" disabled>Guardar Todo</button>
+      <button type="button" class="update" disabled>Actualizar Todo</button>
+      <button type="button" class="clear">Vaciar Todo</button>
+  </form>
+  <div class="bottom_space"></div>
+
+  <div class="bottom_hidder"></div>
+
+  <script src="./js/main/script.js"></script>
+  </main>
+  <footer class="floating_footer">
+
+  </footer>
+</body>
+
+</html>
