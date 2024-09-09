@@ -4,7 +4,6 @@ window.addEventListener('load', function () {
 });
 
 //determines if the user has a set theme
-
 function detectColorScheme() {
   var theme = "dark";    //default to light
 

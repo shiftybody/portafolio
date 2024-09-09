@@ -294,8 +294,14 @@ p {
 
 
 .title_fuera_de_serie{
-  z-index: 2;
+  z-index: 3;
   font-size: 2rem;
+}
+
+.link_fuera_de_serie{
+  /* eliminar todo decarador */
+  text-decoration: none;
+  color: var(--text-color);
 }
 
 /* transparent item */
