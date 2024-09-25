@@ -260,6 +260,7 @@ p {
   text-align: center;
 }
 
+
 .kenji {
   position: absolute;
   top: 0;
@@ -303,6 +304,24 @@ p {
   text-decoration: none;
   color: var(--text-color);
 }
+
+
+/* empresarios de mexico*/
+.empresarios_space{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10%;
+  background-color: #a3c182;
+}
+
+.link_empresarios{
+  /* eliminar todo decarador */
+  text-decoration: none;
+  text-align: center;
+  color: var(--text-color);
+}
+
 
 /* transparent item */
 .transparent_item{
