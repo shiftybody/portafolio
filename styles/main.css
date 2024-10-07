@@ -315,6 +315,7 @@ p {
   background-color: #a3c182;
 }
 
+
 .link_empresarios{
   /* eliminar todo decarador */
   text-decoration: none;
@@ -368,6 +369,24 @@ p {
   opacity: .5;
 }
 
+/* por que fracasan los paises */
+.libro_space {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10%;
+  background-image: url('../assets/img/portada.webp');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.link_libro{
+  /* eliminar todo decarador */
+  text-decoration: none;
+  text-align: center;
+  color: var(--text-color);
+}
+
 
 /* Responsive adjustments */
 @media (max-width: 320px) {
@@ -375,7 +394,7 @@ p {
   :root {
     font-size: .75rem;
   }
-  
+
   .grid-container {
     max-width: calc(100% - .25rem);
   }

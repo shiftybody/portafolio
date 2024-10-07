@@ -28,26 +28,57 @@ body {
   mask-image: linear-gradient(0deg, rgba(0, 0, 0, 1) 65%, transparent);
 }
 
-.bottom_space{
+.bottom_space {
   padding-bottom: 10rem;
 }
 
-
-
-.floating_header {
-  position: fixed; /* Hace que el header esté siempre visible en la parte superior */
-  top: 2.5rem;       /* Margen superior para que parezca flotante */
-  left: 7%;      /* Margen izquierdo */
-  right: 7%;     /* Margen derecho */
-  height: 3rem;    /* Altura del header */
-  background-color: #333; /* Color de fondo del header */
-  color: white;    /* Color del texto */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Añade sombra para efecto de flotante */
-  border-radius: 1rem; /* Bordes redondeados */
+.floating_header2 {
+  position: fixed;
+  /* Hace que el header esté siempre visible en la parte superior */
+  top: 6rem;
+  /* Margen superior para que parezca flotante */
+  left: 7%;
+  /* Margen izquierdo */
+  right: 7%;
+  /* Margen derecho */
+  height: 3rem;
+  /* Altura del header */
+  background-color: #333333;
+  /* Color de fondo del header */
+  color: white;
+  /* Color del texto */
+  border-radius: 1rem;
+  /* Bordes redondeados */
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999; /* Asegura que esté por encima de otros elementos */
+  z-index: 999;
+}
+
+.floating_header {
+  position: fixed;
+  /* Hace que el header esté siempre visible en la parte superior */
+  top: 2.5rem;
+  /* Margen superior para que parezca flotante */
+  left: 7%;
+  /* Margen izquierdo */
+  right: 7%;
+  /* Margen derecho */
+  height: 3rem;
+  /* Altura del header */
+  background-color: #333;
+  /* Color de fondo del header */
+  color: white;
+  /* Color del texto */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Añade sombra para efecto de flotante */
+  border-radius: 1rem;
+  /* Bordes redondeados */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  /* Asegura que esté por encima de otros elementos */
   /* add shadow */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.396);
 }
@@ -57,13 +88,14 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  
+
 }
 
 .right-link {
   flex: 1;
   display: flex;
   flex-direction: row-reverse;
+  padding-right: .5em;
 }
 
 .left-link {
@@ -87,40 +119,49 @@ body {
 }
 
 .floating_footer {
-  position: fixed; /* Hace que el footer esté siempre visible en la parte inferior */
-  bottom: 2.25rem;       /* Margen inferior para que parezca flotante */
-  left: 7%;      /* Margen izquierdo */
-  right: 7%;     /* Margen derecho */
-  height: 3rem;    /* Altura del footer */
-  background-color: #333; /* Color de fondo del footer */
-  color: white;    /* Color del texto */
-  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1); /* Añade sombra para efecto de flotante */
-  border-radius: 1rem; /* Bordes redondeados */
+  position: fixed;
+  /* Hace que el footer esté siempre visible en la parte inferior */
+  bottom: 2.25rem;
+  /* Margen inferior para que parezca flotante */
+  left: 7%;
+  /* Margen izquierdo */
+  right: 7%;
+  /* Margen derecho */
+  height: 3rem;
+  /* Altura del footer */
+  background-color: #333;
+  /* Color de fondo del footer */
+  color: white;
+  /* Color del texto */
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+  /* Añade sombra para efecto de flotante */
+  border-radius: 1rem;
+  /* Bordes redondeados */
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999; 
+  z-index: 999;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.396);
 }
 
-hr{
+hr {
   /* grosor */
   border: 1px solid #333;
   /* color */
   border-color: #333;
   margin-bottom: 2rem;
-  
+
 }
 
-#strengths3{
+#strengths3 {
   margin: 0;
 }
 
-#opportunities3{
+#opportunities3 {
   margin: 0;
 }
 
-#weaknesses3{
+#weaknesses3 {
   margin: 0;
 }
 
@@ -181,12 +222,14 @@ form {
   max-width: 900px;
   margin: 0 auto;
 }
+
 details {
   padding: 10px;
   border: 1px solid #2f2f2f;
   border-radius: .5rem;
   margin: 10px 0;
 }
+
 summary {
   font-size: 1.2em;
   background-color: var(--bg-color);
@@ -229,7 +272,7 @@ textarea:focus {
   cursor: not-allowed;
 }
 
-.details-save:enabled{
+.details-save:enabled {
   background-color: #4CAF50;
   color: white;
 }
@@ -238,10 +281,12 @@ button.save {
   background-color: #4CAF50;
   color: white;
 }
+
 button.update {
   background-color: #2196F3;
   color: white;
 }
+
 button.clear {
   background-color: #f44336;
   color: white;
@@ -254,22 +299,27 @@ button.clear {
   /* auto size */
   width: 1.5re;
   height: 100%;
-  border-radius: 50%; /* Hace el contenedor circular */
-  overflow: hidden; /* Asegura que la imagen no se salga del contenedor circular */
-  border: none; /* Añade un borde opcional */
+  border-radius: 50%;
+  /* Hace el contenedor circular */
+  overflow: hidden;
+  /* Asegura que la imagen no se salga del contenedor circular */
+  border: none;
+  /* Añade un borde opcional */
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f0f0f0; /* Color de fondo opcional */
+  background-color: #f0f0f0;
+  /* Color de fondo opcional */
 }
 
 .profile-icon img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Asegura que la imagen cubra completamente el área circular */
+  object-fit: cover;
+  /* Asegura que la imagen cubra completamente el área circular */
 }
 
-.autor_btn{
+.autor_btn {
   justify-content: center;
   align-items: center;
 
@@ -287,8 +337,8 @@ button {
 /* Componente flotante */
 .floating-icon {
   position: fixed;
-  bottom: 4rem;
-  right: 8rem;
+  bottom: 3rem;
+  right: 7%;
   width: 80px;
   height: 80px;
   border-radius: 15px;
@@ -297,7 +347,8 @@ button {
   justify-content: center;
   align-items: center;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  cursor: pointer; /* Cambia el cursor para indicar que es clicable */
+  cursor: pointer;
+  /* Cambia el cursor para indicar que es clicable */
 }
 
 /* Imagen dentro del icono */
@@ -321,12 +372,13 @@ button {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-auto-rows: 1fr;
-  gap: 3rem;
+  gap: 2rem;
+  row-gap: 8rem;
 }
 
 .image-item {
   width: 100%;
-  height: 100%;
+  height: 160%;
   object-fit: cover;
   border-radius: 15px;
   cursor: pointer;
@@ -366,6 +418,6 @@ button {
   border-radius: 20px;
 }
 
-.image-item.faded + .description {
+.image-item.faded+.description {
   display: block;
 }

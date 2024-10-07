@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="styles/global.css">
+  <link rel="stylesheet" href="styles/herramientas.css">
+  <script src="https://kit.fontawesome.com/be7b66abf8.js" crossorigin="anonymous"></script>
+  <script src="js/main/color_scheme.js" defer></script>
+  <link rel="stylesheet" href="styles/fuera-de-serie.css">
+  <title>Empresarios de Mexico</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      /* align-items: center; */
+      height: 100vh;
+      margin: 0;
+      margin-top: 10em;
+    }
+
+    .container {
+      text-align: center;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    main {
+      margin-top: 0 !important;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    button {
+      margin: 5px;
+      cursor: pointer;
+    }
+
+    .table-container {
+      width: 80%;
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+
+    h1 {
+      color: var(--text-color);
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+
+    th {
+      background-color: #9bbc7f;
+      color: white;
+      font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    td {
+      color: #555;
+    }
+
+    .invisibleth {
+      background-color: #fff;
+      border: none;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+    }
+
+    body {
+      font-family: futura-pt, sans-serif;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+
+    #container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      background-image: url("assets/img/fondo.png");
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      overflow: hidden;
+      /* cursor: none; */
+    }
+
+    .spotlight {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(circle at var(--x) var(--y), transparent 5%, #191919f2 10%);
+    }
+
+    h1 {
+      margin: 0;
+      color: #fff;
+      font-size: 3rem;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    @media screen and (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+      }
+    }
+
+    /* Estilos para los círculos blancos */
+    .circle {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background-color: white;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    /* Efecto de agrandamiento al pasar sobre los círculos */
+    .circle:hover {
+      transform: scale(1.5);
+    }
+
+    /* Tooltip para mostrar la información */
+    .circle::after {
+      content: attr(data-info);
+      /* Toma el valor del atributo data-info */
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+      white-space: nowrap;
+      font-size: 12px;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      top: -35px;
+      /* Ajusta la posición del tooltip */
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* Mostrar el tooltip al hacer hover */
+    .circle:hover::after {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    /* --------------------------- */
+    .ps-boton {
+      position: relative;
+      display: inline-block;
+      margin: 10px;
+      text-decoration: none;
+    }
+
+    .ps-boton img {
+      width: auto;
+      height: 30px;
+    }
+
+    table {
+      margin: 0 100px;
+    }
+
+    .ps-boton .tooltip-text {
+      visibility: hidden;
+      width: 200px;
+      /* Aumenta el ancho del tooltip */
+      background-color: #292929;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 8px 0;
+
+      /* Posicionamiento */
+      position: absolute;
+      z-index: 1;
+      top: 145%;
+      /* Mueve el tooltip debajo del botón */
+      left: 50%;
+      margin-left: -100px;
+      /* Ajusta para centrar el tooltip */
+
+      /* Transiciones */
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .ps-boton .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: -5px;
+      /* Posiciona la flecha en la parte superior del tooltip */
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: transparent transparent black transparent;
+      /* Flecha apuntando hacia arriba */
+    }
+
+    .ps-boton:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .content-wrapper {
+      background-color: #fff;
+      padding: 40px;
+      max-width: 800px;
+      margin: auto;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      line-height: 1.6;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      color: #4a90e2;
+      font-size: 24px;
+      margin-bottom: 10px;
+      border-bottom: 2px solid #4a90e2;
+      padding-bottom: 5px;
+    }
+
+    p {
+      color: #555;
+      font-size: 18px;
+      margin-bottom: 16px;
+      text-align: justify;
+    }
+
+    ul {
+      color: #555;
+      font-size: 18px;
+      margin-left: 20px;
+
+    }
+
+    .highlight {
+      background-color: #ffeb3b;
+      padding: 2px 4px;
+      font-weight: bold;
+    }
+
+    .content-wrapper hr {
+      border: none;
+      height: 1px;
+      background-color: #ccc;
+      margin: 20px 0;
+    }
+
+    .imagenNogales {
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="noise"></div>
+  <!-- div que oculta el contenido del main para el header fl -->
+  <div class="top_hidder"></div>
+
+  <header class="floating_header header">
+    <a href="./index.html" class="left-link">
+      <i class="fa-solid fa-house fa-xl"></i>
+    </a>
+    <div class="center-buttons">
+      <!-- botones para ir a las secciones -->
+      <a class="ps-boton" onclick="showSection('section1')">
+        <img src="assets/img/cuadrado.png" alt="Botón Triángulo">
+        <span class="tooltip-text">Hacia una teoria en la desiguladad global</span>
+      </a>
+
+      <a class="ps-boton" onclick="showSection('section2')">
+        <img src="assets/img/triangulo.png" alt="Botón Cuadrado">
+        <span class="tooltip-text">Fundamentos</span>
+      </a>
+
+      <a class="ps-boton" onclick="showSection('section3')">
+        <img src="assets/img/cancelar.png" alt="Botón Equis">
+        <span class="tooltip-text">Derivas institucionales</span>
+      </a>
+
+      <a class="ps-boton" onclick="showSection('section4')">
+        <img src="assets/img/circulo.png" alt="Botón Círculo">
+        <span class="tooltip-text">Lo que no funciona</span>
+      </a>
+
+      <a class="ps-boton" onclick="showSection('section5')">
+        <img src="assets/img/cuadrado (1).png" alt="Botón Círculo">
+        <span class="tooltip-text">Conclusión</span>
+      </a>
+
+
+    </div>
+    <div class="right-link">
+      <input type="checkbox" id="checkbox_teme">
+      <label id="theme-switch" class="theme-switch" for="checkbox_teme"></label>
+    </div>
+    <div class="autor_btn">
+      <a href="./about-me.html" class="" disabled><button>AUTOR</button></a>
+    </div>
+
+  </header>
+
+  <!-- cuerpo -->
+  <main>
+
+    <div class="container">
+      <div class="section active" id="section1">
+        <div class="content-wrapper">
+          <h2>Hacia una Teoría de la Desigualdad Global</h2>
+
+          <p>Las sociedades funcionan a través de una serie de reglas políticas y económicas, creadas e impuestas por el
+            Estado y los ciudadanos de manera colectiva. Las instituciones económicas moldean los incentivos para
+            recibir educación, ahorrar, invertir, innovar y adoptar nuevas tecnologías. Sin embargo, es el proceso
+            político el que determina bajo qué instituciones económicas se vivirá.</p>
+
+
+          <h3>El Impacto de las Instituciones</h3>
+          <p>Una institución política está formada por su constitución, si es o no una democracia, y el reparto del
+            poder político y la capacidad de gobernar y regular a la sociedad. Las instituciones políticas son las que
+            forjan el éxito o el fracaso de los países.</p>
+
+          <p>Por ejemplo, en <span class="">Estados Unidos</span>, emprendedores como Bill Gates tenían plena confianza
+            en sus instituciones y en el Estado de derecho que estas generaban. Las instituciones económicas del país
+            brindan incentivos, estabilidad y un poder político limitado pero repartido adecuadamente.</p>
+
+          <p>El libro analiza cómo las instituciones económicas son críticas para determinar si un país es próspero o
+            pobre. Sin embargo, también destaca que son las instituciones políticas las que determinan qué tipo de
+            instituciones económicas existen en un país y cómo interactúan.</p>
+
+          <br>
+
+          <img src="assets/img/R.jpeg" alt="" class="imagenNogales">
+
+          <br>
+
+          <h3>El Caso de Nogales</h3>
+          <p>Un ejemplo claro de la influencia de las instituciones se puede ver en la ciudad de Nogales, dividida por
+            la frontera entre Estados Unidos y México.</p>
+
+
+          <ul>
+            <li><strong>Nogales, Arizona (EE. UU.):</strong> Renta media anual: 30,000 dólares. Servicios como
+              electricidad, teléfono, alcantarillado y carreteras son accesibles. Esperanza de vida por encima del
+              promedio mundial.</li>
+            <li><strong>Nogales, Sonora (México):</strong> La renta es más baja, los servicios básicos no están
+              garantizados y la corrupción hace que abrir un negocio sea riesgoso.</li>
+          </ul>
+
+          <br>
+          <br>
+
+          <h3>Colonización y su Impacto</h3>
+          <p>Para entender por qué las instituciones de Estados Unidos fomentan el éxito económico más que las de México
+            o el resto de América Latina, es necesario examinar cómo se fundaron las colonias en ambos continentes.</p>
+
+          <p>En América Latina, las instituciones coloniales como la encomienda y la mita buscaban extraer riqueza de
+            las comunidades indígenas, sofocando el desarrollo económico. En contraste, los colonos ingleses en
+            Jamestown crearon un sistema en el que los propios colonos tendrían que trabajar, lo que dio origen a una
+            mayor libertad política y económica.</p>
+          <br>
+
+          <h3>Repercusiones Institucionales</h3>
+          <p>Las instituciones creadas durante el periodo colonial español en América Latina sofocaron el potencial
+            económico de la región, mientras que en Estados Unidos, los derechos políticos más amplios y las asambleas
+            permitieron el surgimiento de un sistema más democrático y abierto a la innovación.</p>
+
+          <br>
+
+          <h3>Innovación, Patentes y Banca</h3>
+          <p>El surgimiento de la Revolución Industrial en Estados Unidos trajo consigo incentivos económicos que
+            permitieron a cualquier persona, sin importar su origen social, patentar ideas y crear negocios. En
+            contraste, en México, la falta de competitividad y el control de unos pocos bancos limitaron el acceso al
+            crédito, perpetuando la desigualdad.</p>
+
+        </div>
+      </div>
+      <div class="section" id="section2">
+        <center>
+          <div class="gallery-container">
+            <div class="grid">
+              <img src="./assets/IA-images/1.webp" alt="Imagen 1" class="image-item"
+                data-description="¿de qué se encargan las instituciones económicas inclusivas?
+
+              hacen respetar los derechos de propiedad, crean igualdad de oportunidades, fomentan la inversión en habilidades y nuevas tecnologías. conduciendo al crecimiento económico."
+                draggable="false">
+              <img src="./assets/IA-images/2.webp" alt="Imagen 2" class="image-item"
+                data-description="¿ que son las instituciones economicas extractivas? estructuras para extraer recursos de la mayoria para un grupo reducido y que no protegen los derechos de propiedad ni proporcioan incentivos para la actividad economica.">
+              <img src="./assets/IA-images/3.webp " alt="Imagen 3" class="image-item"
+                data-description="¿cual es el papel de las instituciones politicas inclusivas?
+
+                se encargan de repartir el poder político de manera pluralista con un grado de centralización que les permita la ley y el orden, la base de unos derechos de propiedad seguros y una economía de mercado inclusiva.">
+              <img src="./assets/IA-images/4.webp " alt="Imagen 3" class="image-item"
+                data-description="¿es la relacion entre las economias & politicas inclusivas  igual para el caso de sus contrapartes?
+
+                Si. las instituciones economicas extractivas estan relacionadas con las instituciones politicas extractivas, que concentran el poder en manos de unos pocos, que entonces tendran incentivos para mantener y desarrollar instituciones economicas extractivas en beneficio propio y utilizar los recursos que obtengan para perpetuar el control del poder politico.">
+              <img src="./assets/IA-images/5.webp " alt="Imagen 3" class="image-item" data-description="¿Qué son las coyunturas criticas?
+
+                acontecimientos que perturban el equilibro politico y economico existente en una o muchas sociedades.">
+              <img src="./assets/IA-images/6.webp " alt="Imagen 3" class="image-item" data-description="El círculo vicioso se refiere a una situación en la que las instituciones políticas y económicas extractivas se perpetúan y refuerzan mutuamente, atrapando a los países en un ciclo de pobreza, desigualdad y subdesarrollo. En este tipo de sistema, las élites que controlan las instituciones políticas tienen incentivos para mantenerlas extractivas, lo que asegura su poder y riqueza a corto plazo, pero impide el crecimiento económico a largo plazo. Como resultado, cualquier intento de reforma o cambio es bloqueado por las élites, y el país sigue atrapado en un estado de pobreza e inestabilidad.
+                ">
+              <img src="./assets/IA-images/7.webp " alt="Imagen 3" class="image-item"
+                data-description="El círculo virtuoso describe una situación en la que las instituciones políticas y económicas inclusivas se refuerzan mutuamente, creando un ciclo positivo de crecimiento económico y estabilidad política. En este tipo de sistema, las instituciones inclusivas promueven la innovación, la inversión y la participación política, lo que a su vez impulsa el desarrollo económico. A medida que la economía crece, las instituciones inclusivas se vuelven más fuertes, lo que conduce a más prosperidad y estabilidad a largo plazo.">
+              <img src="./assets/IA-images/8.webp " alt="Imagen 3" class="image-item"
+                data-description="¿Los circulos virtuosos o visiosos son aboslutos? No. tal es el caso de venecia y el imperio romano. ">
+              <img src="./assets/IA-images/9.webp " alt="Imagen 3" class="image-item" data-description="Existen dos razones por las cuales una institucion politica extactiva puede genera crecimiento:
+
+                1. centralización del poder.
+                2. explotacion de recursos.">
+              <img src="./assets/IA-images/10.webp " alt="Imagen 3" class="image-item"
+                data-description="¿el crecimiento bajo instituciones politicas extractivas es mantenible?
+
+                No.  Por 2 razones:
+
+                1. porque el desarrollo economico sostenible exige innovacion y esta no puede ser desligada de la destruccion creativa, efectos secundarios de la destruccion crreativa, es la sustituycion de lo viejo por lo nuevo  y la desestablización de las relaciones de poder en el campo politico.
+
+                    Como las elites que dominan las instituciones extractivas temen la destruccion creativa, se resistiran a ella y cualquier crecimiento que germinen bajo instituciones extractivas, en última instancia, durara poco tiempo.
+
+
+                1. En estos sistemas, las élites utilizan su poder para enriquecerse a expensas del resto de la población, lo que genera una profunda desigualdad y resentimiento social. Esto a menudo conduce a conflictos, revoluciones, golpes de estado o guerras civiles, que interrumpen cualquier crecimiento económico.">
+              <!-- Añade más imágenes según sea necesario -->
+            </div>
+        </center>
+      </div>
+      <div class="section" id="section3" style="width: 90%;">
+
+        <h2>Comparativa de los Efectos del Comercio Atlántico</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>País</th>
+              <th>Distribución del Poder</th>
+              <th>Impacto en las Instituciones</th>
+              <th>Resultado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Inglaterra</td>
+              <td>
+                La riqueza del comercio atlántico se distribuyó entre la burguesía mercantil, lo que fortaleció su poder
+                político y económico.
+              </td>
+              <td>
+                Permitió consolidar las instituciones inclusivas, como el Parlamento. La Revolución Gloriosa de 1688
+                limitó el poder real.
+              </td>
+              <td>
+                Inglaterra aprovechó el comercio para impulsar su crecimiento económico y preparar el camino para la
+                Revolución Industrial.
+              </td>
+            </tr>
+            <tr>
+              <td>Francia</td>
+              <td>
+                El poder estaba concentrado en la monarquía absoluta y la aristocracia, quienes controlaban la riqueza
+                del comercio atlántico.
+              </td>
+              <td>
+                Aunque se creó una clase mercantil, no pudo ganar suficiente poder para desafiar a la monarquía. Las
+                instituciones extractivas permanecieron.
+              </td>
+              <td>
+                Las tensiones sociales llevaron a la Revolución Francesa de 1789, pero durante este período, las
+                instituciones políticas no se transformaron inclusivamente.
+              </td>
+            </tr>
+            <tr>
+              <td>España</td>
+              <td>
+                El comercio atlántico y las riquezas de América fueron controlados principalmente por la monarquía y una
+                pequeña élite aristocrática.
+              </td>
+              <td>
+                Las riquezas reforzaron la dependencia de la extracción de recursos coloniales y perpetuaron las
+                instituciones extractivas.
+              </td>
+              <td>
+                España no pudo utilizar sus recursos de manera sostenible, lo que resultó en estancamiento económico y
+                el declive del poder imperial.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+      <div class="section" id="section4">
+        <div>
+          <img src="assets/img/mapa chido.png" alt="">
+        </div>
+      </div>
+
+      <div class="section" id="section5">
+
+      </div>
+    </div>
+
+
+    <!-- <div class="bottom_hidder"></div> -->
+
+  </main>
+
+  <a href="about-me.html" class="floating-icon">
+    <img src="assets/img/nuevo.png" alt="Channel Logo">
+  </a>
+
+  <!-- el final del footer -->
+  <!-- <footer class="floating_footer"> -->
+
+  <!-- </footer> -->
+
+  <script src="./js/main/script.js"></script>
+  <script src="./js/main/cards.js"></script>
+  <script>
+
+    function showSection(sectionId) {
+      // Ocultar todas las secciones
+      var sections = document.querySelectorAll('.section');
+      sections.forEach(function (section) {
+        section.classList.remove('active');
+      });
+
+      // Mostrar la sección seleccionada
+      var selectedSection = document.getElementById(sectionId);
+      selectedSection.classList.add('active');
+    }
+  </script>
+</body>
+
+</html>
