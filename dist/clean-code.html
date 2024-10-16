@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">`
+  <link rel="stylesheet" href="styles/global.css">
+  <link rel="stylesheet" href="styles/herramientas.css">
+  <script src="https://kit.fontawesome.com/be7b66abf8.js" crossorigin="anonymous"></script>
+  <script src="js/main/color_scheme.js" defer></script>
+  <link rel="stylesheet" href="styles/fuera-de-serie.css">
+  <title>Clean Code</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      text-align: center;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    main {
+      margin-top: 0 !important;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    button {
+      margin: 5px;
+      cursor: pointer;
+    }
+
+    .table-container {
+      width: 80%;
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+
+    h1 {
+      color: var(--text-color);
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+
+    th {
+      background-color: #9bbc7f;
+      color: white;
+      font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    td {
+      color: #555;
+    }
+
+    .invisibleth {
+      background-color: #fff;
+      border: none;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+    }
+
+    body {
+      font-family: futura-pt, sans-serif;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+
+    #container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      background-image: url("assets/img/fondo.png");
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      overflow: hidden;
+      /* cursor: none; */
+    }
+
+    .spotlight {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(circle at var(--x) var(--y), transparent 5%, #191919f2 10%);
+    }
+
+    h1 {
+      margin: 0;
+      color: #fff;
+      font-size: 3rem;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    @media screen and (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+      }
+    }
+
+    /* Estilos para los círculos blancos */
+    .circle {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background-color: white;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    /* Efecto de agrandamiento al pasar sobre los círculos */
+    .circle:hover {
+      transform: scale(1.5);
+    }
+
+    /* Tooltip para mostrar la información */
+    .circle::after {
+      content: attr(data-info);
+      /* Toma el valor del atributo data-info */
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+      white-space: nowrap;
+      font-size: 12px;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      top: -35px;
+      /* Ajusta la posición del tooltip */
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* Mostrar el tooltip al hacer hover */
+    .circle:hover::after {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    /* --------------------------- */
+    .ps-boton {
+      position: relative;
+      display: inline-block;
+      margin: 10px;
+      text-decoration: none;
+    }
+
+    .ps-boton img {
+      width: auto;
+      height: 30px;
+    }
+
+    table {
+      margin: 0 100px;
+    }
+
+    .ps-boton .tooltip-text {
+      visibility: hidden;
+      width: 200px;
+      /* Aumenta el ancho del tooltip */
+      background-color: #292929;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 8px 0;
+
+      /* Posicionamiento */
+      position: absolute;
+      z-index: 1;
+      top: 145%;
+      /* Mueve el tooltip debajo del botón */
+      left: 50%;
+      margin-left: -100px;
+      /* Ajusta para centrar el tooltip */
+
+      /* Transiciones */
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .ps-boton .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: -5px;
+      /* Posiciona la flecha en la parte superior del tooltip */
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: transparent transparent black transparent;
+      /* Flecha apuntando hacia arriba */
+    }
+
+    .ps-boton:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .content-wrapper {
+      background-color: #fff;
+      padding: 40px;
+      max-width: 800px;
+      margin: auto;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      line-height: 1.6;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      color: #4a90e2;
+      font-size: 24px;
+      margin-bottom: 10px;
+      border-bottom: 2px solid #4a90e2;
+      padding-bottom: 5px;
+    }
+
+    p {
+      color: #555;
+      font-size: 18px;
+      margin-bottom: 16px;
+      text-align: justify;
+    }
+
+    ul {
+      color: #555;
+      font-size: 18px;
+      margin-left: 20px;
+
+    }
+
+    .highlight {
+      background-color: #ffeb3b;
+      padding: 2px 4px;
+      font-weight: bold;
+    }
+
+    .content-wrapper hr {
+      border: none;
+      height: 1px;
+      background-color: #ccc;
+      margin: 20px 0;
+    }
+
+    .imagenNogales {
+      width: 100%;
+    }
+
+    main {
+      margin-top: 10rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="noise"></div>
+  <!-- div que oculta el contenido del main para el header fl -->
+  <div class="top_hidder"></div>
+
+  <header class="floating_header header">
+    <a href="./index.html" class="left-link">
+      <i class="fa-solid fa-house fa-xl"></i>
+    </a>
+    <!-- center buttons on the header element  -->
+    <div class="center-buttons">
+
+    </div>
+
+    <div class="right-link">
+      <input type="checkbox" id="checkbox_teme">
+      <label id="theme-switch" class="theme-switch" for="checkbox_teme"></label>
+    </div>
+    <div class="autor_btn">
+      <a href="./about-me.html" class="" disabled><button>AUTOR</button></a>
+    </div>
+
+  </header>
+
+  <!-- cuerpo -->
+  <main>
+
+    <div id="content">
+      <p>Partial transcript of Donald Trump’s speech in Hilton Head, South Carolina</p>
+      <p>And then that was it. I responded. So he asked me a question. The question was fine. You know, professionally
+        written. So he asked me a question. I give him an answer. I blow him away. Right? Everybody says Trump won the
+        debate. Everybody. And that’s it.</p>
+      <p>And the ad is him asking the question and I’m standing here like this because I haven’t – in fact you see in
+        one
+        of them I’m just about ready to open my mouth. But he doesn’t let me respond. That’s almost false advertising.
+        Isn’t it? So I mentioned it.</p>
+      <p>Hillary is a disaster. I mean, Hillary – Hillary’s controlled by her money. So is Jeb. By the way, I’m the only
+        one self-funding my campaign. I’m self-funding.</p>
+      <p>You know, one of the things that makes me happy, I heard one of the commentators this morning said: “You know,
+        I’ve been watching this stuff for 50 years. I’ve never seen anything like what’s happened with Trump.”</p>
+      <p>…I think low energy was a brutal statement. Right? And by the way, low energy can be applied to Hillary. I just
+        don’t like to use the same thing twice on one of my enemies. Right? Because I consider them enemies. We view
+        this
+        as war. Don’t we view this as war? It’s war. It’s war. So you don’t like to use it. I hate to give it up…</p>
+      <p>So here’s the story. So we are in a situation where we have incompetent leadership, where our trade deals are
+        killing us, our military is not prepared. Gen. Odierno when he left just recently he said we are less prepared
+        now
+        than at anytime that he can remember, and I think he went back to the beginning. But let’s say Second World War.
+        Okay? That’s enough.</p>
+      <p>Now we should be very prepared now because the world hates us. She has done a terrible job as Secretary of
+        State.<br />
+        I mean, think of it. Putin comes out, he said, “Donald Trump is brilliant. He’s doing an amazing job and he’s
+        leading the pack.” Okay. That’s nice.</p>
+      <p>And she and my opponents say “Oh, isn’t that terrible that Putin said – “ Wouldn’t it be nice if we could get
+        along with the world? Wouldn’t it be? Seriously? No, no. Wouldn’t it be nice?</p>
+      <p>I mean, they want me to refuse his statement. “How dare you say I’m brilliant.” Who’s going to do that? And by
+        the way, if he said it about any one of them, they would have been very happy.</p>
+      <p>But the point is we have to get along. The world has blown up around Barack Obama.<br />
+        Now, I don’t know if you saw his recent release. They were talking about the Department of State. State
+        Department. And they said very strongly, you know, the things that they’ve done. Well, they couldn’t find it
+        because what have they done that’s good? And they said bringing peace to Syria. Did you see that?</p>
+      <p>So instead of saying they made a mistake, call it a typo, they made a mistake, they’re trying to justify it.
+        “Well, we meant we’re working on it.” Can you believe? Bringing peace to Syria. The world is blowing up. The
+        migration in Syria. They say one of their achievements of the year is bringing peace to Syria. And the whole
+        world
+        is talking about it. It’s the level of stupidity is incredible.</p>
+      <p>I’m telling you. I used to use the word incompetent. Now, I just call them stupid.</p>
+      <p>I went to an Ivy League school. I’m very highly educated. I know words. I have the best words. I have the – but
+        there’s no better word than stupid. Right? There is none. There is none. There’s no word like that.<br />
+        So, we are going to turn things around.</p>
+      <p>But if we have Hillary, I’ve got to tell you, I just saw where for the last week she’s been hitting me really
+        hard with the women card. Okay? Really hard.</p>
+      <p>And I had to say, “Okay, that’s enough. That’s enough.” And we did a strong number. She’s not going to win.</p>
+      <p>And by the way, I love the concept – I love, love, love having a woman president. Can’t be her. She’s horrible.
+        She’s horrible.</p>
+    </div>
+
+    <script type="text/javascript">
+      window.ZTYPE_FLAGS = 0;
+    </script>
+
+    <style>
+      #ztype-overlay {
+        z-index: 1000000;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        transition: background-color 0.3s ease;
+      }
+
+      #ztype-overlay.ztype-scanning {
+        background-color: rgba(0, 0, 0, 0.0);
+      }
+
+      #ztype-overlay.ztype-scan-done {
+        background-color: #6ce8c3;
+      }
+
+      #ztype-overlay.ztype-playing {
+        background-color: rgba(0, 0, 0, 0.7);
+      }
+
+      .ztype-current-text-fragment {
+        background-color: #6ce8c3;
+        color: #fff;
+      }
+
+      .ztype-stats-action {
+        margin-right: 32px;
+        font-size: 14px;
+      }
+
+      .ztype-stats-action img {
+        vertical-align: middle;
+        margin-right: 4px;
+      }
+
+      .ztype-stats-action:hover,
+      #ztype-stats-close:hover {
+        cursor: pointer;
+        color: #4dfed2;
+      }
+
+      #ztype-stats-canvas,
+      #ztype-stats-content {
+        width: 100%;
+        height: 100%;
+      }
+
+      #ztype-stats {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        border: 0;
+        z-index: 1000005;
+        background-color: #fff;
+        display: none;
+        width: 2px;
+        transition: width 0.3s ease-in-out;
+      }
+
+      #ztype-stats.expanded {
+        transition: width 0.3s ease-in-out;
+        width: 98%;
+      }
+
+      #ztype-stats-close {
+        position: absolute;
+        right: 0;
+        top: 0;
+        font-size: 48px;
+        width: 64px;
+        text-align: center;
+        height: 64px;
+      }
+
+      #ztype-stats-foot {
+        padding: 16px 32px 0 32px;
+      }
+
+      #ztype-byline {
+        display: none;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        padding: 2px 6px;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 9;
+        text-align: right;
+        color: #fff;
+      }
+
+      #ztype-scan {
+        background-color: #eee;
+        width: 480px;
+        height: 20px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+      }
+
+      .ztype-playing #ztype-scan,
+      .ztype-scan-done #ztype-scan {
+        display: none;
+      }
+
+      #ztype-scan-progress {
+        height: 100%;
+        width: 0%;
+        background-color: #6ce8c3;
+        transition: width 0.3s ease;
+      }
+
+      #ztype-game-canvas {
+        display: none;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        border: 0;
+        z-index: 1000002;
+        box-shadow: 0 0 30px #000;
+      }
+
+      #ztype-gsense {
+        display: none;
+      }
+
+      .ztype-playing #ztype-game-canvas,
+      .ztype-playing #ztype-byline,
+      .ztype-playing #ztype-gsense {
+        font-size: 12px;
+        display: block;
+      }
+
+      .ztype-modal-container {
+        background: rgba(0, 0, 0, 0.2);
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000006;
+      }
+
+      .ztype-modal-close {
+        color: #4dfed2;
+        z-index: 1000008;
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 48px;
+        text-align: center;
+        cursor: pointer;
+        padding: 0px 16px;
+      }
+
+      .ztype-modal-close:hover {
+        color: #000;
+      }
+
+      .ztype-modal {
+        position: absolute;
+        z-index: 1000007;
+        top: 48px;
+        left: 0;
+        right: 0;
+        height: 640px;
+        max-height: calc(100% - 96px);
+        max-width: 960px;
+        overflow-y: auto;
+        margin: auto;
+        width: 90%;
+        background: #fff;
+        box-shadow: 0 8px 17px 2px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+      }
+
+      .ztype-modal-frame {
+        width: 100%;
+        height: 100%;
+      }
+
+      @media (max-height: 920px) {
+        body.ztype-desktop #ztype-game-canvas {
+          max-height: 100%;
+        }
+      }
+    </style>
+    <div id="ztype-overlay">
+      <div id="ztype-scan">
+        <div id="ztype-scan-progress"></div>
+      </div>
+
+      <div id="ztype-gsense"
+        style="position: absolute; width: 300px; height: 600px; z-index: 1000001; left: 32px; top: 0; bottom: 0; margin: auto;">
+
+      </div>
+      <div id="ztype-stats">
+        <div id="ztype-stats-content">
+          <div id="ztype-stats-close">&#215;</div>
+          <div><canvas id="ztype-stats-canvas"></canvas></div>
+          <div id="ztype-stats-foot">
+            <span class="ztype-stats-action" id="ztype-stats-share-facebook"><img src="media/ui/fb-button.png" /> share
+              on
+              facebook</span>
+            <span class="ztype-stats-action" id="ztype-stats-share-twitter"><img src="media/ui/twitter-button.png" />
+              share on twitter</span>
+          </div>
+        </div>
+      </div>
+      <canvas id="ztype-game-canvas"></canvas>
+
+      <script type="text/javascript">
+        var ZTypeDocumentMode = true;
+      </script>
+
+      <script type="text/javascript" src="js/main/ztype.min.js" charset="UTF-8"></script>
+    </div>
+
+  </main>
+
+  <a href="about-me.html" class="floating-icon">
+    <img src="assets/img/nuevo.png" alt="Channel Logo">
+  </a>
+
+  <!-- el final del footer -->
+  <!-- <footer class="floating_footer"> -->
+
+  <!-- </footer> -->
+
+  <!-- <script src="./js/main/script.js"></script> -->
+  <script src="./js/main/cards.js"></script>
+  <script>
+
+    function showSection(sectionId) {
+      // Ocultar todas las secciones
+      var sections = document.querySelectorAll('.section');
+      sections.forEach(function (section) {
+        section.classList.remove('active');
+      });
+
+      // Mostrar la sección seleccionada
+      var selectedSection = document.getElementById(sectionId);
+      selectedSection.classList.add('active');
+    }
+  </script>
+</body>
+
+</html>

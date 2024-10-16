@@ -387,7 +387,21 @@ p {
   color: var(--text-color);
 }
 
+.libro_space2 {
+display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10%;
+  background-color: #5f3c6f;
+  z-index: 2;
+}
 
+.link_libro2{
+  /* eliminar todo decarador */
+  text-decoration: none;
+  text-align: center;
+  color: var(--text-color);
+}
 /* Responsive adjustments */
 @media (max-width: 320px) {
 

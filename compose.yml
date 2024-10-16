@@ -1,0 +1,17 @@
+services:
+  web:
+    image: apache:latest
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./dist/:/var/www/html
+    ports:
+      - "5500:80"
+    networks:
+      - portafolio
+
+networks:
+  portafolio:
+    driver: bridge
