@@ -295,8 +295,11 @@ p {
 
 
 .title_fuera_de_serie{
-  z-index: 3;
+  position: relative;
+  z-index: 1000;
   font-size: 2rem;
+  /* shadow */
+  text-shadow: 2px 2px 4px #000000;
 }
 
 .link_fuera_de_serie{
@@ -337,7 +340,7 @@ p {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.5;
+  /* opacity: 0.5; */
 }
 
 

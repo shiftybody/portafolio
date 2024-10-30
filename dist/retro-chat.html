@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="styles/global.css">
+  <script src="https://kit.fontawesome.com/be7b66abf8.js" crossorigin="anonymous"></script>
+  <script src="js/main/color_scheme.js" defer></script>
+  <link rel="stylesheet" href="main.css">
+  <title>Rretro Chat</title>
+  <style>
+
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin-top: 3rem;
+    }
+
+    .floating_header {
+      position: absolute;
+      top: 2.5rem;
+      left: 7%;
+      right: 7%;
+      height: 3rem;
+      background-color: #333;
+      color: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.396);
+    }
+
+    .bottom_hidder {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 8rem;
+      background-color: var(--bg-color);
+      z-index: 998;
+      mask-image: linear-gradient(0deg, rgba(0, 0, 0, 1) 65%, transparent);
+    }
+
+    .bottom_space {
+      padding-bottom: 10rem;
+    }
+
+    .right-link {
+      flex: 1;
+      display: flex;
+      flex-direction: row-reverse;
+      padding-right: .5em;
+    }
+
+    .left-link {
+      flex: 1;
+      padding-left: .5em;
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.841);
+    }
+
+
+    .center-buttons {
+      display: flex;
+      justify-content: center;
+      flex: 2;
+    }
+
+    .center-buttons button {
+      margin: 0 5px;
+      padding: 5px 15px;
+      border-radius: .25rem;
+    }
+
+    .floating_footer {
+      position: fixed;
+      /* Hace que el footer esté siempre visible en la parte inferior */
+      bottom: 2.25rem;
+      /* Margen inferior para que parezca flotante */
+      left: 7%;
+      /* Margen izquierdo */
+      right: 7%;
+      /* Margen derecho */
+      height: 3rem;
+      /* Altura del footer */
+      background-color: #333;
+      /* Color de fondo del footer */
+      color: white;
+      /* Color del texto */
+      box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+      /* Añade sombra para efecto de flotante */
+      border-radius: 1rem;
+      /* Bordes redondeados */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.396);
+    }
+
+
+    #strengths3 {
+      margin: 0;
+    }
+
+    #opportunities3 {
+      margin: 0;
+    }
+
+    #weaknesses3 {
+      margin: 0;
+    }
+
+    #theme-switch {
+      width: 3rem;
+      height: 1.4rem;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      background-color: #ffffffb4;
+      border-radius: 200px;
+      box-shadow: insert 0px 5px 15px rgba(0, 0, 0, 0.4), inset 0px -5px 15px rgba(255, 255, 255, 0.4);
+      cursor: pointer;
+      transition: 0.5s;
+    }
+
+    #theme-switch:after {
+      content: '';
+      width: 35%;
+      height: 80%;
+      left: 5%;
+      top: 10%;
+      position: absolute;
+      background-color: rgb(61, 61, 61);
+      border-radius: 180px;
+      transition: 0.3s;
+    }
+
+    #checkbox_teme {
+      width: 0;
+      height: 0;
+      visibility: hidden;
+    }
+
+    #checkbox_teme:checked+#theme-switch {
+      background-color: rgb(255, 255, 255);
+    }
+
+    #checkbox_teme:checked+#theme-switch:after {
+      left: 95%;
+      transform: translateX(-100%);
+      background: linear-gradient(180%, #777, #343434)
+    }
+
+    /*  si .details-save se encuentra desaible   */
+    .details-save:disabled {
+      background-color: #ccc;
+      color: #666;
+      cursor: not-allowed;
+    }
+
+    .details-save:enabled {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+
+    /* cards */
+
+    .profile-icon {
+      /* auto size */
+      width: 1.5re;
+      height: 100%;
+      border-radius: 50%;
+      /* Hace el contenedor circular */
+      overflow: hidden;
+      /* Asegura que la imagen no se salga del contenedor circular */
+      border: none;
+      /* Añade un borde opcional */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f0f0f0;
+      /* Color de fondo opcional */
+    }
+
+    .profile-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* Asegura que la imagen cubra completamente el área circular */
+    }
+
+    .autor_btn {
+      justify-content: center;
+      align-items: center;
+
+    }
+
+
+    /* Componente flotante */
+    .floating-icon {
+      position: fixed;
+      bottom: 3rem;
+      right: 7%;
+      width: 80px;
+      height: 80px;
+      border-radius: 15px;
+      background: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      /* Cambia el cursor para indicar que es clicable */
+    }
+
+    /* Imagen dentro del icono */
+    .floating-icon img {
+      width: 90%;
+      height: 90%;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    /* true cards */
+
+    .gallery-container {
+      position: relative;
+      width: 90%;
+      height: 90%;
+      padding: 0 2rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-auto-rows: 1fr;
+      gap: 2rem;
+      row-gap: 8rem;
+    }
+
+    .image-item {
+      width: 100%;
+      height: 160%;
+      object-fit: cover;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: transform 0.3s, opacity 0.5s;
+    }
+
+    .image-item.enlarged {
+      position: fixed;
+      /* tamaño del alto de media paginad */
+      width: 40%;
+      height: 40%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(2);
+      z-index: 10;
+    }
+
+    .image-item.faded {
+      /* efecto blur con baja saturacion */
+      filter: blur(3px) saturate(0.5);
+    }
+
+    .description {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      /* agregar un background al texto para que sea legible */
+      background: rgba(0, 0, 0, 0.9);
+      padding: auto;
+      font-size: 1.5rem;
+      text-align: center;
+      z-index: 11;
+      display: none;
+      padding: 12px;
+      border-radius: 20px;
+    }
+
+    .image-item.faded+.description {
+      display: block;
+    }
+
+    .loading {
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      height: 100%;
+      align-items: center;
+      flex-direction: column;
+      margin-top: 50%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="noise"></div>
+
+  <header class="floating_header">
+    <a href="./index.html" class="left-link">
+      <i style="display:flex; height: 1.5rem;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+          <path fill="#fff"
+            d="M575.8 255.5c0 18-15 32.1-32 32.1l-32 0 .7 160.2c0 2.7-.2 5.4-.5 8.1l0 16.2c0 22.1-17.9 40-40 40l-16 0c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1L416 512l-24 0c-22.1 0-40-17.9-40-40l0-24 0-64c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32 14.3-32 32l0 64 0 24c0 22.1-17.9 40-40 40l-24 0-31.9 0c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2l-16 0c-22.1 0-40-17.9-40-40l0-112c0-.9 0-1.9 .1-2.8l0-69.7-32 0c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z" />
+        </svg>
+      </i>
+    </a>
+    <div class="center-buttons">
+    </div>
+    <div class="right-link">
+      <input type="checkbox" id="checkbox_teme">
+      <label id="theme-switch" class="theme-switch" for="checkbox_teme"></label>
+    </div>
+  </header>
+  <main>
+
+    <!-- retro terminal -->
+    <div id="crt">
+      <div id="screen">
+        <div id="wrapper">
+          <div id="interlace"></div>
+          <div id="envelope">
+            <div id="terminal"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <small>&nbsp;</small>
+  </main>
+  <script src="./main.js"></script>
+
+</body>
+
+</html>
