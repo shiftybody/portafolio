@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="styles/global.css">
+  <script src="https://kit.fontawesome.com/be7b66abf8.js" crossorigin="anonymous"></script>
+  <script src="js/main/color_scheme.js" defer></script>
+  <link rel="stylesheet" href="styles/herramientas.css">
+  <link rel="stylesheet" href="main.css">
+  <title>Teoría General de Sistemas</title>
+  <style>
+    main {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      height: 100vh;
+      margin-top: 8rem;
+      flex-direction: column;
+    }
+
+    .floating_header {
+      position: absolute;
+      top: 2.5rem;
+      left: 7%;
+      right: 7%;
+      height: 3rem;
+      background-color: #333;
+      color: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.396);
+      padding: 0 .5rem;
+    }
+
+    .bottom_hidder {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 8rem;
+      background-color: var(--bg-color);
+      z-index: 998;
+      mask-image: linear-gradient(0deg, rgba(0, 0, 0, 1) 65%, transparent);
+    }
+
+    .bottom_space {
+      padding-bottom: 10rem;
+    }
+
+    .right-link {
+      flex: 1;
+      display: flex;
+      flex-direction: row-reverse;
+      padding-right: .5em;
+    }
+
+    .left-link {
+      flex: 1;
+      padding-left: .5em;
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.841);
+    }
+
+
+    .center-buttons {
+      display: flex;
+      justify-content: center;
+      flex: 2;
+    }
+
+    .center-buttons button {
+      margin: 0 5px;
+      padding: 5px 15px;
+      border-radius: .25rem;
+    }
+
+    .floating_footer {
+      position: fixed;
+      bottom: 2.25rem;
+      left: 7%;
+      right: 7%;
+      height: 3rem;
+      background-color: #333;
+      color: white;
+      box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.396);
+    }
+  </style>
+  <script>
+  </script>
+</head>
+
+<body>
+  <div class="noise"></div>
+  <!-- header -->
+  <header class="floating_header">
+    <a href="./index.html" class="left-link">
+      <i style="display:flex; height: 1.5rem;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+          <path fill="#fff"
+            d="M575.8 255.5c0 18-15 32.1-32 32.1l-32 0 .7 160.2c0 2.7-.2 5.4-.5 8.1l0 16.2c0 22.1-17.9 40-40 40l-16 0c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1L416 512l-24 0c-22.1 0-40-17.9-40-40l0-24 0-64c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32 14.3-32 32l0 64 0 24c0 22.1-17.9 40-40 40l-24 0-31.9 0c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2l-16 0c-22.1 0-40-17.9-40-40l0-112c0-.9 0-1.9 .1-2.8l0-69.7-32 0c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z" />
+        </svg>
+      </i>
+    </a>
+    <div class="center-buttons">
+    </div>
+    <div class="right-link">
+      <input type="checkbox" id="checkbox_teme">
+      <label id="theme-switch" class="theme-switch" for="checkbox_teme"></label>
+    </div>
+    <div class="autor_btn">
+      <a href="./about-me.html" class="" disabled><button>AUTOR</button></a>
+    </div>
+  </header>
+
+  <!-- main content -->
+  <main>
+
+    <style>
+      .clear {
+        padding: 0.5rem 1rem;
+        background-color: #333;
+        color: white;
+        border-radius: 0.25rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .craftear {
+        margin-left: 0;
+        padding: 0.5rem 1rem;
+        background-color: #333;
+        color: white;
+        border-radius: 0.25rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .catalog {
+        padding: 1rem;
+        background-color: #333;
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 0.25rem;
+      }
+
+      section {
+        margin: 1rem;
+      }
+
+      .draggable {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: auto;
+        min-width: 10rem;
+        aspect-ratio: 1 / 1;
+        background-color: #666;
+        color: white;
+        border-radius: 0.25rem;
+        cursor: move;
+      }
+
+      .draggable:active {
+        cursor: grabbing;
+      }
+
+      .draggable:hover {
+        background-color: red;
+      }
+
+      .controls {
+        display: flex;
+        width: 30rem;
+        justify-content: space-between;
+      }
+
+      button {
+        margin-right: 0;
+        margin-left: 1rem;
+      }
+
+      .board-wrapper {
+        position: relative;
+        height: 30rem;
+        width: 30rem;
+      }
+
+      .board {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+        width: 100%;
+        height: 100%;
+        background-color: #333;
+      }
+
+      .cell {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5rem;
+        color: white;
+        background-color: #666;
+      }
+
+      /* Nueva capa overlay dentro del board-wrapper */
+      .overlay {
+        background-size: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 30rem;
+        height: 30rem;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+        pointer-events: none;
+      }
+
+      .preview {
+        background-color: rgba(58, 119, 167, 0.1);
+        /* Fondo ligero para la vista previa */
+      }
+
+      .occupied {
+        background-color: #ddd;
+        /* Fondo de las celdas ocupadas */
+      }
+
+      img {
+        /* ajustar a su contenedor */
+        width: 10rem;
+        height: 100%;
+      }
+    </style>
+
+    <!-- component picker  2 x 2 dimension respect board matrix-->
+    <section>
+      <div class="catalog">
+        <div class="draggable" draggable="true">
+          <img src="./assets/arquetipos/snowball.png" alt="snowball" name="snowball">
+        </div>
+        <div class="draggable" draggable="true">
+          <img src="./assets/arquetipos/balanza.png" alt="balanza" name="balanza">
+        </div>
+        <div class="draggable" draggable="true">
+          <img src="./assets/arquetipos/demora.png" alt="demora" name="demora">
+        </div>
+      </div>
+    </section>
+
+    <div class="board-wrapper">
+      <div class="board">
+        <!-- 6 x 6 matrix with css grid-->
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+      </div>
+
+      <div class="overlay">
+        <!-- Esta capa overlay será donde se dropeen los elementos -->
+      </div>
+
+    </div>
+
+    <!-- section for clear the board-->
+    <section class="controls">
+      <div>
+        <button type="button" class="craftear">CRAFTEAR</button>
+      </div>
+      <div>
+        <button type="button" disabled="disabled" class="arquetipo"> ARQUETIPO </button>
+        <button type="button" class="clear">LIMPIAR</button>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- perfil space -->
+  <a href="about-me.html" class="floating-icon">
+    <img src="assets/img/nuevo.png" alt="Channel Logo">
+  </a>
+
+  <script>
+    const cells = document.querySelectorAll(".board .cell");
+    const overlay = document.querySelector(".overlay");
+    const draggables = document.querySelectorAll(".draggable");
+
+    let draggedElement = null;
+    let previewCells = []; // Almacena las celdas en las que se muestra la vista previa
+
+    // Asignar eventos a los elementos arrastrables
+    draggables.forEach(draggable => {
+      draggable.addEventListener("dragstart", handleDragStart);
+      draggable.addEventListener("dragend", handleDragEnd);
+    });
+
+    cells.forEach(cell => {
+      cell.addEventListener("dragover", handleDragOver);
+      cell.addEventListener("dragleave", handleDragLeave);
+      cell.addEventListener("drop", handleDrop);
+    });
+
+    // Funciones de eventos
+    function handleDragStart(e) {
+      draggedElement = e.target;
+      setTimeout(() => {
+        if (draggedElement && draggedElement.classList) {
+          draggedElement.classList.add("invisible");
+        }
+      }, 0);
+    }
+
+    function handleDragEnd(e) {
+      if (e.target && e.target.classList) {
+        e.target.classList.remove("invisible");
+      }
+      draggedElement = null;
+      clearPreview();
+    }
+
+    function handleDragOver(e) {
+      e.preventDefault();
+      const cellIndex = Array.from(cells).indexOf(e.target);
+      const row = Math.floor(cellIndex / 6);
+      const col = cellIndex % 6;
+
+      clearPreview();
+
+      if (row < 5 && col < 5) {
+        previewCells = getPreviewCells(row, col);
+        previewCells.forEach(cell => {
+          if (cell && cell.classList) {
+            cell.classList.add("preview");
+          }
+        });
+      }
+    }
+
+    function handleDragLeave(e) {
+      clearPreview();
+    }
+
+    function handleDrop(e) {
+      e.preventDefault();
+      clearPreview();
+
+      const cellIndex = Array.from(cells).indexOf(e.target);
+      const row = Math.floor(cellIndex / 6);
+      const col = cellIndex % 6;
+
+      if (row < 5 && col < 5) {
+        // Calcular el tamaño de una celda
+        const cellWidth = cells[0].offsetWidth;
+        const cellHeight = cells[0].offsetHeight;
+
+        // Crear un clon del elemento dropeado y ajustarlo en el overlay
+        const newElement = draggedElement.cloneNode(true);
+        newElement.classList.remove("invisible");
+        newElement.style.position = "absolute";
+        newElement.style.top = `${row * cellHeight}px`;
+        newElement.style.left = `${col * cellWidth}px`;
+        newElement.style.width = `${cellWidth * 2}px`;
+        newElement.style.height = `${cellHeight * 2}px`;
+        overlay.appendChild(newElement);
+      }
+    }
+
+    // event listener para button class clear
+    document.querySelector(".clear").addEventListener("click", () => {
+      overlay.innerHTML = "";
+      overlay.style.backgroundImage = "none";
+      document.querySelector(".arquetipo").disabled = true;
+    });
+
+    function clear() {
+      overlay.innerHTML = "";
+    }
+
+    // Función para obtener las celdas de vista previa en un área de 2x2
+    function getPreviewCells(row, col) {
+      const preview = [];
+      for (let r = 0; r < 2; r++) {
+        for (let c = 0; c < 2; c++) {
+          const cell = cells[(row + r) * 6 + (col + c)];
+          if (cell) {
+            preview.push(cell);
+          }
+        }
+      }
+      return preview;
+    }
+
+    // Función para limpiar la vista previa
+    function clearPreview() {
+      previewCells.forEach(cell => {
+        if (cell && cell.classList) {
+          cell.classList.remove("preview");
+        }
+      });
+      previewCells = [];
+    }
+
+    // when button class craftear is clicked read the overlay position of the elements and save it in a matrix
+    document.querySelector(".craftear").addEventListener("click", () => {
+      const elements = overlay.children;
+      const matrix = Array.from({ length: 6 }, () => Array(6).fill(null));
+
+      // Suponiendo que el tamaño de cada celda en la cuadrícula sea uniforme
+      const cellHeight = overlay.clientHeight / 6;
+      const cellWidth = overlay.clientWidth / 6;
+
+      for (const element of elements) {
+        // Calcular las posiciones `row` y `col` dentro de la matriz 6x6
+        const row = Math.floor(element.offsetTop / cellHeight);
+        const col = Math.floor(element.offsetLeft / cellWidth);
+
+        // Asegurarse de que las posiciones `row` y `col` están dentro del rango 0-5
+        if (row >= 0 && row < 6 && col >= 0 && col < 6) {
+          // Almacenar el atributo `name` en la matriz en lugar del elemento completo
+          const nameAttribute = element.getAttribute('name');
+          matrix[row][col] = nameAttribute;
+        }
+      }
+
+      handleMatrix(matrix);
+    });
+
+    // crear funcion que maneje  lo que sucedera segun lo que devuelva matrix
+
+    const firstCase = [[],
+
+    ]
+
+    // diccitionary with 10 possible cases
+    const cases = {
+      firstCase: [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "demora",
+          null,
+          "balanza",
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ],
+      secondCase: [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "snowball",
+          null,
+          "balanza",
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ],
+      thirdCase: [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "balanza",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          "snowball",
+          null,
+          null
+        ],
+        [
+          null,
+          "balanza",
+          "demora",
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ],
+      fourthCase: [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "balanza",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          "snowball",
+          null,
+          null
+        ],
+        [
+          null,
+          "balanza",
+          null,
+          "demora",
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ],
+      fifthCase: [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          "balanza",
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          "balanza",
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          "demora",
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ],
+      sixCase: [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "balanza",
+          null,
+          "balanza",
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ],
+      sevenCase: [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          "snowball",
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          "snowball",
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ],
+      eightCase: [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "snowball",
+          null,
+          "balanza",
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          "demora",
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "snowball",
+          null,
+          "balanza",
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ],
+      nineCase: [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          "balanza",
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          "demora",
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ],
+      tenCase:
+        [
+          [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            "snowball",
+            null,
+            "balanza",
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            "demora",
+            null,
+            "balanza",
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        ],
+    }
+
+    var numero = 0;
+
+    function handleMatrix(matrix) {
+      console.log(matrix);
+      // look in the cases dictionary for the matrix
+      const caseName = getCaseName(matrix);
+
+      // handle the case
+      switch (caseName) {
+        case "firstCase":
+          overlay.style.backgroundImage = "url('./assets/arquetipos/1.png')";
+          document.querySelector(".arquetipo").disabled = false;
+          numero = 1;
+          clear();
+          break;
+        case "secondCase":
+          overlay.style.backgroundImage = "url('./assets/arquetipos/2.png')";
+          document.querySelector(".arquetipo").disabled = false;
+          numero = 2;
+          clear();
+          break;
+        case "thirdCase":
+          overlay.style.backgroundImage = "url('./assets/arquetipos/3.png')";
+          document.querySelector(".arquetipo").disabled = false;
+          numero = 3;
+          clear();
+          break;
+        case "fourthCase":
+          overlay.style.backgroundImage = "url('./assets/arquetipos/4.png')";
+          document.querySelector(".arquetipo").disabled = false;
+          numero = 4;
+          clear();
+          break;
+        case "fifthCase":
+          overlay.style.backgroundImage = "url('./assets/arquetipos/5.png')";
+          document.querySelector(".arquetipo").disabled = false;
+          numero = 5;
+          clear();
+          break;
+        case "sixCase":
+          overlay.style.backgroundImage = "url('./assets/arquetipos/6.png')";
+          document.querySelector(".arquetipo").disabled = false;
+          numero = 6;
+          clear();
+          break;
+        case "sevenCase":
+          overlay.style.backgroundImage = "url('./assets/arquetipos/7.png')";
+          document.querySelector(".arquetipo").disabled = false;
+          numero = 7;
+          clear();
+          break;
+        case "eightCase":
+          overlay.style.backgroundImage = "url('./assets/arquetipos/8.png')";
+          document.querySelector(".arquetipo").disabled = false;
+          numero = 8;
+          clear();
+          break;
+        case "nineCase":
+          overlay.style.backgroundImage = "url('./assets/arquetipos/9.png')";
+          document.querySelector(".arquetipo").disabled = false;
+          numero = 9;
+          clear();
+          break;
+        case "tenCase":
+          overlay.style.backgroundImage = "url('./assets/arquetipos/10.png')";
+          document.querySelector(".arquetipo").disabled = false;
+          numero = 10;
+          clear();
+          break;
+        default:
+          console.log("No case found");
+          break;
+      }
+
+    }
+
+    document.querySelector(".arquetipo").addEventListener("click", () => {
+      arquetipo(numero);
+    });
+
+    function arquetipo(numero) {
+      // estructura switch para mostrar el arquetipo
+      switch (numero) {
+        case 1:
+          alert("COMPENSACIÓN ENTRE PROCESO Y DEMORA:  Una empresa de manufactura implementa una máquina nueva para aumentar la producción. Sin embargo, los empleados requieren capacitación para manejarla correctamente, lo que ralentiza el proceso en las primeras semanas. La empresa no anticipa esta curva de aprendizaje y comienza a enfrentar retrasos en las entregas, lo cual afecta su relación con algunos clientes. La mejora en la producción sólo se verá reflejada una vez que los empleados dominen el uso de la máquina.");
+          break;
+        case 2:
+          alert("LIMITES DEL CRECIMIENTO: Ejemplo - Una empresa de software que se enfoca en desarrollo web está experimentando un aumento en la demanda. Para atender a más clientes, decide contratar nuevos desarrolladores, pero pronto se da cuenta de que la falta de líderes de proyecto capacitados limita la cantidad de proyectos que pueden manejar eficazmente. Incluso con más desarrolladores, el flujo de trabajo se estanca, ya que los recursos clave para liderar y coordinar los equipos no crecen al mismo ritmo.");
+          break;
+        case 3:
+          alert("DESPLAZAMIENTO DE LA CARGA: Ejemplo - Una tienda minorista comienza a recibir quejas sobre la atención al cliente. En lugar de capacitar a su equipo para mejorar la experiencia del cliente, la empresa decide ofrecer descuentos para mantener a los clientes contentos temporalmente. Esto funciona en el corto plazo, pero no aborda la causa de fondo. A largo plazo, la percepción de mala atención sigue afectando su reputación, lo cual es más difícil y costoso de revertir.");
+          break;
+        case 4:
+          alert("CASO ESPECIAL: DESPLAZAMIENTO DE LA CARGA HACIA LA INTERVENCIÓN: Un pequeño taller mecánico empieza a notar una baja en la productividad debido a fallas en el equipo. En lugar de invertir en mantenimiento preventivo o en la compra de nuevo equipo, los dueños deciden llamar a un técnico cada vez que algo falla. Esta intervención frecuente permite seguir trabajando, pero los costos por reparación aumentan, y la eficiencia sigue cayendo, afectando el desempeño general del taller.");
+          break;
+        case 5:
+          alert("EROSION DE METAS: Ejemplo - Una pyme de productos alimenticios establece como meta la mejora continua de la calidad. Sin embargo, con el aumento en la demanda, los tiempos de producción comienzan a acortarse, y la empresa decide reducir sus controles de calidad para cumplir con las entregas. A medida que esta práctica se vuelve la norma, la calidad de los productos disminuye, lo que eventualmente afecta la satisfacción del cliente y la reputación de la empresa.");
+          break;
+        case 6:
+          alert("ESCALADA: Ejemplo - Dos pymes de tecnología en una misma ciudad compiten por atraer al mejor talento en desarrollo de software. Cada una intenta ofrecer mejores salarios y beneficios para evitar que sus empleados se vayan con la competencia. Este enfoque lleva a una escalada de costos laborales que ambas empresas no pueden sostener, perjudicando sus finanzas a largo plazo. La escalada de salarios reduce el margen de ganancia sin mejorar significativamente la retención de talento.");
+          break;
+        case 7:
+          alert("EXITO PARA QUIEN TIENE EXITO: Ejemplo - Una empresa de marketing digital tiene varios equipos. Uno de ellos cierra un contrato grande con un cliente importante, lo cual le permite obtener más recursos para campañas futuras. Al mismo tiempo, los otros equipos que no lograron grandes contratos quedan con menos recursos para competir. Esta distribución desigual de recursos hace que el equipo exitoso siga creciendo mientras los demás enfrentan dificultades para atraer nuevos clientes.");
+          break;
+        case 8:
+          alert("TRAGEDIA DEL TERRENO COMUN: Ejemplo - Varios pequeños negocios de catering comparten el mismo espacio para almacenar sus ingredientes frescos. Ninguno de los negocios se responsabiliza por el mantenimiento y limpieza del área común, y eventualmente el lugar se vuelve insalubre. Todos los negocios se ven afectados, ya que la calidad de los ingredientes comienza a deteriorarse debido a las malas condiciones de almacenamiento.");
+          break;
+        case 9:
+          alert("APAGUEN ESE INCENDIO: Ejemplo - En una pyme de logística, el gerente está constantemente resolviendo problemas de última hora, como entregas fallidas y reclamos de clientes. No se toman medidas para entender por qué ocurren estos problemas recurrentes, por lo que cada día surge una nueva 'emergencia'. El gerente se enfoca en 'apagar incendios' en lugar de abordar la causa raíz, lo que lleva a un ambiente de trabajo estresante y una eficiencia baja.");
+          break;
+        case 10:
+          alert("CRECIMIENTO Y BAJO DESEMPEÑO: Ejemplo - Una pyme de diseño gráfico comienza a crecer rápidamente gracias a la adquisición de nuevos clientes. Sin embargo, el crecimiento es tan acelerado que no se contratan o capacitan diseñadores adicionales. La carga de trabajo excesiva lleva a que la calidad del diseño decaiga, y el equipo actual se siente sobrecargado. A pesar de ganar nuevos clientes, el desempeño y la satisfacción de los empleados disminuyen.");
+          break;
+        default:
+          alert("EL CASO NO SE PUEDE CRAFTEAR");
+          break;
+      }
+    }
+
+
+    function getCaseName(matrix) {
+      for (const [key, value] of Object.entries(cases)) {
+        if (compareMatrix(value, matrix)) {
+          return key;
+        }
+      }
+      return "No case found";
+    }
+
+    function compareMatrix(matrix1, matrix2) {
+      for (let i = 0; i < matrix1.length; i++) {
+        for (let j = 0; j < matrix1[i].length; j++) {
+          if (matrix1[i][j] !== matrix2[i][j]) {
+            return false;
+          }
+        }
+      }
+      return true;
+    }
+
+
+
+  </script>
+</body>
+
+</html>

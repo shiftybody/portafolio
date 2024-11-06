@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="main.css">
   <title>Rretro Chat</title>
   <style>
-
     main {
       display: flex;
       justify-content: center;
@@ -35,6 +34,7 @@
       align-items: center;
       z-index: 999;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.396);
+      padding: 0 .5rem;
     }
 
     .bottom_hidder {
@@ -80,23 +80,14 @@
 
     .floating_footer {
       position: fixed;
-      /* Hace que el footer esté siempre visible en la parte inferior */
       bottom: 2.25rem;
-      /* Margen inferior para que parezca flotante */
       left: 7%;
-      /* Margen izquierdo */
       right: 7%;
-      /* Margen derecho */
       height: 3rem;
-      /* Altura del footer */
       background-color: #333;
-      /* Color de fondo del footer */
       color: white;
-      /* Color del texto */
       box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
-      /* Añade sombra para efecto de flotante */
       border-radius: 1rem;
-      /* Bordes redondeados */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -170,9 +161,7 @@
       color: white;
     }
 
-
     /* cards */
-
     .profile-icon {
       /* auto size */
       width: 1.5re;
@@ -202,7 +191,6 @@
       align-items: center;
 
     }
-
 
     /* Componente flotante */
     .floating-icon {
@@ -302,6 +290,166 @@
       margin-top: 50%;
     }
   </style>
+  <script type="module">
+    import { CreateWebWorkerMLCEngine } from "https://esm.run/@mlc-ai/web-llm";
+
+    const SELECTED_MODEL = "Llama-3.1-8B-Instruct-q4f32_1-MLC";
+    let engine;
+    let messages = [
+      { role: "system", content: "Eres un guru de los videojuegos que respondera preguntas muy concretas sobre videojuegos cualquier otro tema que no este relacionado con videojuegos tienes que responder que no sabes o que no fuiste programado para responder esas preguntas. Solo sabes español" },
+    ];
+
+    const initializeChatbot = async () => {
+
+      engine = await CreateWebWorkerMLCEngine(
+        new Worker('./worker.js', { type: 'module' }),
+        SELECTED_MODEL,
+        {
+          initProgressCallback: (info) => {
+            console.log('>', info.text);
+          }
+        }
+      );
+    };
+
+    document.addEventListener('DOMContentLoaded', initializeChatbot);
+
+    // Texto de bienvenida o banner
+    const banner = "\nInicializando Chat\nPreguntame lo que quieras sobre\nVIDEOJUEGOS\n\n.............................................................................\n\n@@@@@@@  @@@ @@@@@@@@ @@@  @@@ @@@  @@@ @@@@@@@@ @@@  @@@ @@@ @@@@@@@   @@@@@@ \n@@!  @@@ @@! @@!      @@!@!@@@ @@!  @@@ @@!      @@!@!@@@ @@! @@!  @@@ @@!  @@@\n@!@!@!@  !!@ @!!!:!   @!@@!!@! @!@  !@! @!!!:!   @!@@!!@! !!@ @!@  !@! @!@  !@!\n!!:  !!! !!: !!:      !!:  !!!  !: .:!  !!:      !!:  !!! !!: !!:  !!! !!:  !!!\n:: : ::  :   : :: ::: ::    :     ::    : :: ::: ::    :  :   :: :  :   : :. : \n";
+
+    // Función principal de carga del terminal
+    // Función de carga del terminal
+    const load = () => {
+      console.log("Cargando terminal...");
+      const t = terminal({
+        prompt: () => "$ > ",
+        banner: banner,
+        commands: {
+          clear: () => t.clear()
+        }
+      });
+    };
+
+    document.addEventListener('DOMContentLoaded', load);
+
+    // Función que crea el contenedor de opciones iniciales
+    const createOptions = (opts) => Object.assign({}, {
+      banner: 'Hello World',
+      prompt: () => '$ > ',
+      tickrate: 1000 / 60,
+      buflen: 8,
+      commands: {}
+    }, opts || {});
+
+    // Crea el área de texto para la terminal
+    const createElement = (root) => {
+      const el = document.createElement('textarea');
+      el.spellcheck = false;
+      el.value = '';
+      root.appendChild(el);
+      return el;
+    };
+
+    // Ajusta el rango de selección del texto
+    const setSelectionRange = (input) => {
+      const length = input.value.length;
+      input.focus();
+      input.setSelectionRange(length, length);
+    };
+
+    // Lógica para imprimir en pantalla
+    const printer = ($element, buflen) => (buffer) => {
+      if (buffer.length > 0) {
+        const len = Math.min(buflen, buffer.length);
+        const val = buffer.splice(0, len);
+        $element.value += val.join('');
+        setSelectionRange($element);
+        $element.scrollTop = $element.scrollHeight;
+        return true;
+      }
+      return false;
+    };
+
+    // Función que maneja la terminal y el input del usuario
+    const terminal = (opts) => {
+      let buffer = [];
+      const {
+        prompt,
+        banner,
+        commands,
+        buflen,
+        tickrate
+      } = createOptions(opts);
+
+      const $root = document.querySelector('#terminal');
+      const $element = createElement($root);
+
+      // Función para mostrar texto en el terminal y añadir el prompt
+      const output = (text = '') => {
+        const textWithPrompt = text + '\n' + prompt(); // Agrega el prompt al final del texto
+        buffer = buffer.concat(textWithPrompt.split(''));
+      };
+
+      const print = printer($element, buflen);
+
+      // Muestra el banner inicial seguido del prompt
+      output(banner);
+
+      // Ciclo de renderizado
+      const render = () => {
+        if (buffer.length > 0) print(buffer);
+        requestAnimationFrame(render);
+      };
+      render();
+
+      // Procesa la entrada del usuario
+      let messages = []; // Inicializa el array si no está definido
+
+      const parseInput = async (str) => {
+        if (str === 'clear') {
+          buffer = [];
+          $element.value = '';
+          output();
+        } else {
+          const userMessage = {
+            role: "user",
+            content: str
+          }
+
+          messages.push(userMessage)
+
+          // Llama a reply usando engine para generar respuesta
+          const reply = await engine.chat.completions.create({
+            messages,
+          });
+
+          output("\n" + reply.choices[0].message.content + "\n"); // Muestra la respuesta en el terminal
+
+          messages.push({
+            role: "assistant",
+            content: reply.choices[0].message.content
+          });
+        }
+      };
+
+      // Asegura que el `textarea` mantenga el foco
+      const focusTerminal = () => {
+        setTimeout(() => $element.focus(), 0);
+      };
+
+      $element.addEventListener('blur', focusTerminal);
+      $root.addEventListener('click', focusTerminal); // Recibe el foco al hacer clic en la terminal
+
+      $element.addEventListener('keypress', (event) => {
+        if (event.key === 'Enter') {
+          event.preventDefault();
+          const input = $element.value.split('\n').pop().replace('$ > ', '').trim(); // Obtener el último input sin prompt
+          parseInput(input);
+        }
+      });
+      focusTerminal(); // Asegura que esté enfocado al iniciar
+    };
+  </script>
 </head>
 
 <body>
@@ -336,10 +484,7 @@
         </div>
       </div>
     </div>
-
-    <small>&nbsp;</small>
   </main>
-  <script src="./main.js"></script>
 
 </body>
 
