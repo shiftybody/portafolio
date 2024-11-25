@@ -152,7 +152,6 @@ document.addEventListener('DOMContentLoaded', () => {
 );
 
 // realizar lo mismo para link_sombreros
-
 document.addEventListener('DOMContentLoaded', () => {
     const savedData = JSON.parse(localStorage.getItem('analysisData'));
 

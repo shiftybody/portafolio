@@ -298,8 +298,6 @@ p {
   position: relative;
   z-index: 1000;
   font-size: 2rem;
-  /* shadow */
-  text-shadow: 2px 2px 4px #000000;
 }
 
 .link_fuera_de_serie{

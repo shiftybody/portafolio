@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="../../../css/global.css">
+  <link rel="stylesheet" href="../../../css/herramientas.css">
+  <script src="https://kit.fontawesome.com/be7b66abf8.js" crossorigin="anonymous"></script>
+  <script src="../../../js/color_scheme.js" defer></script>
+  <title>Motivación - Habilidad Directiva</title>
+  <style>
+    html {
+      font-size: 1rem !important;
+    }
+
+    .question {
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .question label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #348846;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+    }
+
+    .modal h2 {
+      text-align: center;
+    }
+
+    .modal.show {
+      display: block;
+    }
+
+    .btn {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-bottom: 3rem;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+    }
+
+    .head-title {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .question {
+      /* agregar un borde con padding */
+      border: 1px solid #000;
+      padding: 10px;
+      border-radius: 10px;
+
+    }
+  </style>
+</head>
+
+<body>
+  <div class="noise"></div>
+  <!-- div que oculta el contenido del main para el header fl -->
+  <div class="top_hidder"></div>
+
+  <header class="floating_header header">
+    <a href="../../../index.html" class="left-link">
+      <i class="fa-solid fa-house fa-xl"></i>
+    </a>
+    <div class="center-buttons">
+
+    </div>
+    <div class="right-link">
+      <input type="checkbox" id="checkbox_teme">
+      <label id="theme-switch" class="theme-switch" for="checkbox_teme"></label>
+    </div>
+    <div class="autor_btn">
+      <a href="../../sobre-mi/index.html" class="" disabled><button>AUTOR</button></a>
+    </div>
+
+  </header>
+
+  <main>
+    <div class="head-title">
+      <h1>Test de Capacidad Motivadora</h1>
+    </div>
+    <form id="motivatorTest">
+      <div class="question">
+        <p>1. Si acaba de tener una idea que le parece muy interesante, ¿qué actitud toma?</p>
+        <label><input type="radio" name="q1" value="a"> Necesita que otras personas la aprueben para seguir pensando
+          qué va a hacer.</label>
+        <label><input type="radio" name="q1" value="b"> La revisa por los cuatro costados con personas idóneas, y
+          luego comienza la acción.</label>
+        <label><input type="radio" name="q1" value="c"> Se lanza de inmediato a su ejecución.</label>
+        <label><input type="radio" name="q1" value="d"> La deja para otra oportunidad, por miedo a equivocarse,
+          porque la ve muy audaz, por inhibición,
+          etcétera.</label>
+      </div>
+      <div class="question">
+        <p>2. Al enfrentar dificultades, ¿cómo reacciona?</p>
+        <label><input type="radio" name="q2" value="a"> Sale corriendo.</label>
+        <label><input type="radio" name="q2" value="b"> Se angustia.</label>
+        <label><input type="radio" name="q2" value="c"> Se ve estimulado, como el toro ante el color rojo.</label>
+        <label><input type="radio" name="q2" value="d"> Se mantiene sereno y toma distancia para reflexionar en
+          busca de la solución.</label>
+      </div>
+      <div class="question">
+        <p>3. A la pregunta clásica: ante una botella de vino que contiene exactamente la mitad de su capacidad,
+          ¿qué dice?</p>
+        <label><input type="radio" name="q3" value="a"> “Está medio llena”.</label>
+        <label><input type="radio" name="q3" value="b"> “Está medio vacía”.</label>
+        <label><input type="radio" name="q3" value="c"> “Qué lástima, podría estar llena”.</label>
+        <label><input type="radio" name="q3" value="d"> “Qué suerte, podría estar vacía”.</label>
+      </div>
+      <div class="question">
+        <p>4. Si usted visualiza con la mente una pared que le cierra el camino, ¿qué piensa a continuación?</p>
+        <label><input type="radio" name="q4" value="a"> Se siente incapaz de seguir adelante.</label>
+        <label><input type="radio" name="q4" value="b"> Tiene la sensación de que se le viene encima.</label>
+        <label><input type="radio" name="q4" value="c"> Idea una forma de rodearla y seguir adelante.</label>
+        <label><input type="radio" name="q4" value="d"> Piensa en cómo derribarla.</label>
+      </div>
+      <div class="question">
+        <p>5. Acaba de ser rechazada/o para un puesto laboral, y al estar en la calle piensa o siente:</p>
+        <label><input type="radio" name="q5" value="a"> “Quizá no soy lo suficientemente capaz para este tipo de
+          trabajo.”</label>
+        <label><input type="radio" name="q5" value="b"> “Debo descubrir algunas fallas en mí, y superarlas.”</label>
+        <label><input type="radio" name="q5" value="c"> “Cada persona tiene un trabajo que la está esperando, y éste
+          tarde o temprano llega.”</label>
+        <label><input type="radio" name="q5" value="d"> “Yo nunca tengo suerte.”</label>
+      </div>
+      <div class="question">
+        <p>6. ¿Qué frase aplicaría, o aplica más en general, ante las circunstancias de la vida?</p>
+        <label><input type="radio" name="q6" value="a"> “Siempre que llovió, paró.”</label>
+        <label><input type="radio" name="q6" value="b"> “Todo lo bueno termina.”</label>
+        <label><input type="radio" name="q6" value="c"> “Los sueños, sueños son.”</label>
+        <label><input type="radio" name="q6" value="d"> “La esperanza es lo último que se pierde.”</label>
+      </div>
+      <div class="question">
+        <p>7. Un familiar o un amigo le dijo que volvería a las 10. Son las 11:30 y todavía no ha llegado. ¿Qué actitud
+          toma?</p>
+        <label><input type="radio" name="q7" value="a"> Piensa inmediatamente que le pasó algo y que en cualquier
+          momento llamará la policía.</label>
+        <label><input type="radio" name="q7" value="b"> Empieza a preocuparse.</label>
+        <label><input type="radio" name="q7" value="c"> Se pone a enumerar todas las razones comunes por las cuales
+          puede haberse producido la demora.</label>
+        <label><input type="radio" name="q7" value="d"> Se pone a mirar TV sin pensar en el asunto.</label>
+      </div>
+      <div class="question">
+        <p>8. Acaba de discutir agriamente con una persona a la que tendrá que seguir tratando, y luego de la disputa
+          piensa:</p>
+        <label><input type="radio" name="q8" value="a"> “Lo voy a mandar a...”</label>
+        <label><input type="radio" name="q8" value="b"> “Bien, ya pasó...”</label>
+        <label><input type="radio" name="q8" value="c">“¿Por qué no entiende que tengo toda la razón?”</label>
+        <label><input type="radio" name="q8" value="d"> “Voy a repasar toda la discusión. Seguramente debe haber
+          puntos en los que puedo estar equivocado.
+          Si es así, le ofreceré disculpas y olvidaremos el asunto.”</label>
+      </div>
+
+      <button type="submit" class="btn">Enviar Respuestas</button>
+      <br>
+
+    </form>
+
+    <div id="resultModal" class="modal">
+      <center>
+        <h1>Resultado del Test</h1>
+        <h2>El color que te corresponde es el: </h2>
+      </center>
+      <h2 id="resultText"></h2>
+      <button class="btn" onclick="closeModal()">Cerrar</button>
+    </div>
+
+
+  </main>
+
+
+  <a href="about-me.html" class="floating-icon">
+    <img src="../../../assets/img/nuevo.png" alt="Channel Logo">
+  </a>
+
+</body>
+
+<script>
+  const answers = {
+    azul: ["d", "a", "c", "b", "d", "b", "a", "a"],
+    verde: ["a", "b", "b", "a", "a", "c", "b", "b"],
+    rojo: ["b", "d", "a", "c", "b", "a", "c", "d"],
+    amarillo: ["c", "c", "d", "d", "c", "d", "d", "c"]
+  };
+
+  const descriptions = {
+    azul: "Usted tiene gran tendencia al pesimismo. Es conveniente que analice sus actitudes.",
+    verde: "Poca actitud positiva. Recuerde que todo puede verse bajo un ángulo más favorable, y eso puede dar ventajas.",
+    rojo: "Buena actitud positiva, dotada de adecuada sensatez. No deje de fortalecerla, siempre bajo el control de la lógica.",
+    amarillo: "Actitud positiva en grado superlativo, pero carente del equilibrio que dan la prudencia y el ejercicio de la reflexión. Fortalezca estas últimas cualidades para compensar el optimismo excesivo."
+  };
+
+  const modalColors = {
+    azul: "#87CEEB",
+    verde: "#98FB98",
+    rojo: "#FF6347",
+    amarillo: "#FFD700"
+  };
+
+  const form = document.getElementById("motivatorTest");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const points = { azul: 0, verde: 0, rojo: 0, amarillo: 0 };
+    const formData = new FormData(form);
+
+    for (let [question, answer] of formData.entries()) {
+      for (let color in answers) {
+        if (answers[color][parseInt(question.substring(1)) - 1] === answer) {
+          points[color] += 10;
+        }
+      }
+    }
+
+    let maxPoints = 0;
+    let dominantColor = "";
+
+    for (let color in points) {
+      if (points[color] > maxPoints) {
+        maxPoints = points[color];
+        dominantColor = color;
+      }
+    }
+
+    const modal = document.getElementById("resultModal");
+    const resultText = document.getElementById("resultText");
+    resultText.textContent = `${dominantColor.toUpperCase()}: ${descriptions[dominantColor]}`;
+    modal.style.backgroundColor = modalColors[dominantColor];
+    modal.classList.add("show");
+  });
+
+  function closeModal() {
+    document.getElementById("resultModal").classList.remove("show");
+  }
+</script>
+
+</html>
