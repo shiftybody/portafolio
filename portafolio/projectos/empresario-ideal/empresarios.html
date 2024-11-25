@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="styles/global.css">
+  <link rel="stylesheet" href="styles/herramientas.css">
+  <script src="https://kit.fontawesome.com/be7b66abf8.js" crossorigin="anonymous"></script>
+  <script src="js/main/color_scheme.js" defer></script>
+  <link rel="stylesheet" href="styles/fuera-de-serie.css">
+  <title>Empresarios de Mexico</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      margin-top: 10em;
+    }
+
+    .container {
+      text-align: center;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    main {
+      margin-top: 0 !important;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    button {
+      margin: 5px;
+      cursor: pointer;
+    }
+
+    .table-container {
+      width: 80%;
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+
+    h1 {
+      color: var(--text-color);
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+
+    th {
+      background-color: #9bbc7f;
+      color: white;
+      font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    td {
+      color: #555;
+    }
+
+    .invisibleth {
+      background-color: #fff;
+      border: none;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+    }
+
+    body {
+      font-family: futura-pt, sans-serif;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+
+    #container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      background-image: url("assets/img/fondo.png");
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      overflow: hidden;
+      /* cursor: none; */
+    }
+
+    .spotlight {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(circle at var(--x) var(--y), transparent 5%, #191919f2 10%);
+    }
+
+    h1 {
+      margin: 0;
+      color: #fff;
+      font-size: 3rem;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    @media screen and (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+      }
+    }
+
+    /* Estilos para los círculos blancos */
+    .circle {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background-color: white;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    /* Efecto de agrandamiento al pasar sobre los círculos */
+    .circle:hover {
+      transform: scale(1.5);
+    }
+
+    /* Tooltip para mostrar la información */
+    .circle::after {
+      content: attr(data-info);
+      /* Toma el valor del atributo data-info */
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+      white-space: nowrap;
+      font-size: 12px;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      top: -35px;
+      /* Ajusta la posición del tooltip */
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* Mostrar el tooltip al hacer hover */
+    .circle:hover::after {
+      visibility: visible;
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="noise"></div>
+  <!-- div que oculta el contenido del main para el header fl -->
+  <div class="top_hidder"></div>
+
+  <header class="floating_header header">
+    <a href="./index.html" class="left-link">
+      <i class="fa-solid fa-house fa-xl"></i>
+    </a>
+    <div class="center-buttons">
+
+    </div>
+    <div class="right-link">
+      <input type="checkbox" id="checkbox_teme">
+      <label id="theme-switch" class="theme-switch" for="checkbox_teme"></label>
+    </div>
+    <div class="autor_btn">
+      <a href="./about-me.html" class="" disabled><button>AUTOR</button></a>
+    </div>
+
+  </header>
+
+  <!-- cuerpo -->
+  <main>
+
+    <!-- start code here -->
+    <div class="buttons">
+      <button onclick="showSection('section1')"> TABLA COMPARATIVA </button>
+      <button onclick="showSection('section2')">EL EMPRESARIO IDEAL</button>
+    </div>
+
+    <div class="container">
+      <div class="section active" id="section1">
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <!-- Primera celda vacía para categorías -->
+                <th class="invisibleth"></th>
+
+              </tr>
+              <tr>
+                <!-- Primera celda vacía para categorías -->
+                <th class="invisibleth"></th>
+                <th>Carlos Slim</th>
+                <th>Ricardo Salinas Pliego</th>
+                <th>Germán Larrea</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Empresa</td>
+                <td>América Móvil</td>
+                <td>Grupo Salinas</td>
+                <td>Grupo México</td>
+              </tr>
+              <tr>
+                <td>Industria</td>
+                <td>Telecomunicaciones</td>
+                <td>Conglomerado</td>
+                <td>Minería</td>
+              </tr>
+              <tr>
+                <td>Fortuna</td>
+                <td>$67.1B</td>
+                <td>$13.2B</td>
+                <td>$14.0B</td>
+              </tr>
+              <tr>
+                <td>Posición Global</td>
+                <td>#1 en México</td>
+                <td>#2 en México</td>
+                <td>#3 en México</td>
+              </tr>
+              <tr>
+                <td>Años</td>
+                <td>83</td>
+                <td>67</td>
+                <td>71</td>
+              </tr>
+              <tr>
+                <td>Fundación</td>
+                <td>América Móvil (2000)</td>
+                <td>Grupo Salinas (2001)</td>
+                <td>Grupo México (1978)</td>
+              </tr>
+              <tr>
+                <td>Ciudad de origen</td>
+                <td>Ciudad de México</td>
+                <td>Ciudad de México</td>
+                <td>Ciudad de México</td>
+              </tr>
+              <tr>
+                <td>Rubro principal</td>
+                <td>Telecomunicaciones</td>
+                <td>Medios</td>
+                <td>Minería</td>
+              </tr>
+              <tr>
+                <td>Empleado más destacado</td>
+                <td>Arturo Elías Ayub</td>
+                <td>Benjamín Salinas</td>
+                <td>Daniel Muñiz Quintanilla</td>
+              </tr>
+              <tr>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+      <div class="section" id="section2">
+        <div id="container">
+          <div id="spotlight" class="spotlight">
+
+            <!-- Añadir los 8 puntos -->
+            <div class="circle" style="top: 10%; left: 50%;" data-info="Es creativo"></div>
+            <div class="circle" style="top: 30%; left: 57%;" data-info="Es fiscalmente responsable"></div>
+            <div class="circle" style="top: 40%; left: 45%;" data-info="Es bueno con los números"></div>
+            <div class="circle" style="top: 25%; left: 48%;" data-info="Tiene habilidades para negociar"></div>
+            <div class="circle" style="top: 70%; left: 45%;" data-info="Busca el ganar ganar"></div>
+            <div class="circle" style="top: 90%; left: 50%;" data-info="Sostenibilidad Ambiental"></div>
+            <div class="circle" style="top: 40%; left: 55%;" data-info="Solidaridad y Cooperación"></div>
+            <div class="circle" style="top: 60%; left: 52%;" data-info="Comprometido con la inclusión"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="bottom_hidder"></div> -->
+
+  </main>
+
+  <a href="about-me.html" class="floating-icon">
+    <img src="assets/img/nuevo.png" alt="Channel Logo">
+  </a>
+
+  <!-- el final del footer -->
+  <!-- <footer class="floating_footer"> -->
+
+  <!-- </footer> -->
+
+  <script src="./js/main/script.js"></script>
+  <script src="./js/main/cards.js"></script>
+  <script>
+
+    var spotlight = document.getElementById("spotlight");
+    window.addEventListener('mousemove', e => {
+      spotlight.style.setProperty('--x', e.clientX + 'px');
+      spotlight.style.setProperty('--y', e.clientY - 100 + 'px');
+    });
+
+    function showSection(sectionId) {
+      // Ocultar todas las secciones
+      var sections = document.querySelectorAll('.section');
+      sections.forEach(function (section) {
+        section.classList.remove('active');
+      });
+
+      // Mostrar la sección seleccionada
+      var selectedSection = document.getElementById(sectionId);
+      selectedSection.classList.add('active');
+    }
+  </script>
+</body>
+
+</html>

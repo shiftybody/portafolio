@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/main.css">
+  <script src="js/main/color_scheme.js" defer></script>
+  <title>Portafolio de Proyectos</title>
+</head>
+
+<body class="background">
+  <div class="noise"></div>
+  <div class="flex-container">
+    <div class="grid-container">
+      <!-- Grid items -->
+      <div class="grid-item large-item">
+        <div class="about-me-card">
+          <img src="assets/img/nuevo.png" alt="logo of shiftybody" class="logo">
+          <div class="invitation-to-travel">
+            <h1 class="saludo1">Hola!</h1>
+            <h2 class="saludo2">Me llamo <b>&nbsp;David&nbsp;</b> </h2>
+            <a class="link-sobre-mi" href="./about-me.html"> CONOCEME </a>
+          </div>
+        </div>
+      </div>
+      <a href="./sendero.html ">
+        <div class="grid-item sendero_space">
+        </div>
+      </a>
+
+      <div class="grid-item">
+        <input type="checkbox" id="checkbox_teme">
+        <label id="theme-switch" class="theme-switch" for="checkbox_teme"></label>
+      </div>
+
+      <!-- 5 herramientas para la toma de desiciones  -->
+      <a href="./herramientas.html" class="link_herramientas">
+        <div class="grid-item herramientas_space">
+          <h3 class="h_first">5</h3>
+          <div class="h_second">
+            <h4>Herramientas</h4>
+            <p>para la toma de desiciones</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Decálogo del Desarrollo -->
+      <div class="grid-item decalogo_desarrollo_space">
+        <h4>Decálogo del Desarrollo</h4>
+      </div>
+
+      <!-- Decálogo de Kenji & Kasuga -->
+      <div class="grid-item medium-item kenji_kasuga_space">
+        <div class="about-me-card">
+          <img src="assets/img/Kenji.jpg" alt="logo of shiftybody" class="kenji" id="myImage">
+          <h4 class="kenji_tittle">
+            Decálogo de Kenji & Kasuga
+          </h4>
+        </div>
+      </div>
+
+      <!-- fuera de Serie -->
+      <div class="grid-item medium-item fuera_de_serie_space">
+        <a href="fuera-de-serie.html" class="link_fuera_de_serie">
+          <img src="assets/img/Untitled design.png" alt="bubbles" class="background_img">
+          <h4 class="title_fuera_de_serie">Fuera de Serie</h4>
+        </a>
+      </div>
+
+      <!-- empresarios de mexico -->
+      <a href="./empresarios.html" class="link_empresarios">
+        <div class="grid-item empresarios_space">
+          <h4>El empresario ideal</h4>
+        </div>
+      </a>
+
+      <a href="./why-nations-fall.html" class="link_libro">
+        <div class="grid-item libro_space">
+          <!-- <h4> Por qué fracasan los paises</h4> -->
+        </div>
+      </a>
+
+
+      <a href="./clean-code.html" class="link_libro2">
+        <div class="grid-item libro_space2">
+          <h4>Clean Code</h4>
+        </div>
+      </a>
+
+      <div class="grid-item medium-item fuera_de_serie_space">
+        <a href="retro-chat.html" class="link_fuera_de_serie">
+          <img src="assets/img/wp4831363.webp" alt="bubbles" class="background_img">
+          <h4 class="title_fuera_de_serie" style="z-index: 9999;">Retro chat</h4>
+        </a>
+      </div>
+
+      <div class="grid-item fuera_de_serie_space">
+        <a href="TGS.html" class="link_fuera_de_serie">
+          <img src="assets/img/tgs.png" alt="bubbles" class="background_img">
+          <h4 class="title_fuera_de_serie" style="z-index: 9999;">TGS</h4>
+        </a>
+      </div>
+
+      <!-- transparent item for auto height -->
+      <div class="grid-item transparent_item"></div>
+
+    </div>
+
+
+  </div>
+  </div>
+
+  <script>
+    const images = ["./assets/img/kasuga.png", "./assets/img/kenji.jpg"]; // URLs de las imágenes
+    let currentIndex = 0;
+
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % images.length; // Actualiza el índice de la imagen
+      document.getElementById("myImage").src = images[currentIndex]; // Cambia la URL de la imagen
+    }, 3000); // Cambia cada 4 segundos
+  </script>
+
+</body>
+
+</html>
